@@ -10,16 +10,20 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@nut-tree-fork/nut-js": "^4.2.1",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "inquirer": "^9.2.20",
     "node-webcam": "^0.8.2",
     "openai": "^4.35.0",
+    "os": "^0.1.2",
+    "path": "^0.12.7",
     "play-sound": "^1.1.6",
     "puppeteer": "^21.11.0",
     "puppeteer-core": "^22.6.5",
     "puppeteer-extra": "^3.3.6",
     "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "robotjs": "^0.6.0",
     "terminal-kit": "^3.1.1"
   }
 }
