@@ -11,9 +11,8 @@ import os from "os";
 import path from "path";
 
 const homeDir = os.homedir();
-const trashDir = path.join(homeDir, ".Trash");
+const trashDir = path.join(homeDir, ".Trash/");
 
-console.log("Trash directory: ", trashDir);
 
 (async () => {
 
@@ -34,6 +33,6 @@ console.log("Trash directory: ", trashDir);
 
     await keyboard.type(Key.LeftSuper, Key.A);
 
-
+    
 
 })();
