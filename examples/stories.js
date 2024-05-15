@@ -46,7 +46,6 @@ const timeout = 3000;
   await sleep(timeout);
 
   while (true) {
-    // PAUSE STORY
     await page.keyboard.press("Space");
 
     await page.screenshot({
