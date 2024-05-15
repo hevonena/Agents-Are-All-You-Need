@@ -1,4 +1,4 @@
-import { image_to_base64, sleep, generate_speech, setPuppeteer, openai } from "../utils.js"
+import { image_to_base64, sleep, generate_speech, setPuppeteer, openai } from "../utils.js";
 import { mouse, left, right, up, down, keyboard, Key, Window } from "@nut-tree-fork/nut-js";
 import os from "os";
 import path from "path";
@@ -8,8 +8,9 @@ const { terminal: term } = pkg;
 
 const homeDir = os.homedir();
 const trashDir = path.join(homeDir, ".Trash/");
-const content = [];
+const fileContent = [];
 
+// -------- FILE READING --------
 
 fs.readdir(trashDir, async (err, files) => {
     if (err) {
@@ -17,13 +18,13 @@ fs.readdir(trashDir, async (err, files) => {
         return;
     }
 
-    const imageFiles = files.filter(file => /\.(jpg|jpeg|png)$/i.test(file));
-    const textFiles = files.filter(file => /\.(txt|js|html|)$/i.test(file));
+    const imageFiles = files.filter((file) => /\.(jpg|jpeg|png)$/i.test(file));
+    const textFiles = files.filter((file) => /\.(txt|js|html|)$/i.test(file));
 
     for (let i = 0; i < imageFiles.length; i++) {
         try {
             const base64Image = await image_to_base64(path.join(trashDir, imageFiles[i]));
-            content.push({
+            fileContent.push({
                 type: "image_url",
                 image_url: base64Image,
             });
@@ -45,49 +46,42 @@ fs.readdir(trashDir, async (err, files) => {
         type: "text",
         text: text,
     });
-    console.log(content);
+    console.log(fileContent);
 });
 
+// -------- OPENAI API + OS KEYSTROKES ETC... --------
+
+const baseSystemPrompt = 
+{
+    role: "system",
+    content: `You are Recycler Joe, an AI Agent that repurposes image files found in the trash bin in creative ways.
+
+    When you receive the files, analyze them and propose a creative ways to repurpose them using the JSON format provided below.
+    JSON format:
+    [
+        {
+            "purpose": "choose a purpose from the list above",
+            "description": "describe what you will create with which files found in the trash bin",
+            "files": ["filename", "filename", "filename"]
+        },
+        {
+            "purpose": "choose another purpose from the list above",
+            "description": "describe what you will create with which files found in the trash bin",
+            "files": ["filename", "filename"]
+        },
+    ]
+  `,
+};
+
+// our main array containing our entire chat history
+const messages = [baseSystemPrompt];
 
 (async () => {
-    const messages = [
-        {
-            role: "system",
-            content: `You are a bin recycler who finds creative ways to repurpose the files found in the dustbin.
-          I'll send you multiple files that were deleted. You can use them to create something new and interesting.
 
-            List of possible purposes:
-            - wallpaper
-            - new logo
-            - meme
-            - keynote
-            - poetic reading
-            - code poetry
-            - algorithmic art
-            - horoscope
-            - recipe
-
-            When you receive the files, analyze them and propose a creative ways to repurpose them using the JSON format provided below.
-            JSON format:
-            [
-                {
-                    "purpose": "choose a purpose from the list above",
-                    "description": "describe what you will create with which files found in the trash bin",
-                    "files": ["filename", "filename", "filename"]
-                },
-                {
-                    "purpose": "choose another purpose from the list above",
-                    "description": "describe what you will create with which files found in the trash bin",
-                    "files": ["filename", "filename"]
-                },
-            ]
-          `,
-        },
-    ];
-
+    // our files
     messages.push({
         role: "user",
-        content: content,
+        content: fileContent,
     });
 
     const response = await openai.chat.completions.create({
@@ -106,19 +100,12 @@ fs.readdir(trashDir, async (err, files) => {
 
     console.log(json_answer);
 
+    await openFinder();
 
-    await keyboard.type(Key.LeftSuper, Key.Space);
-
-    await keyboard.type("finder");
-    await sleep(100);
-    await keyboard.type(Key.Enter);
     await sleep(200);
 
-    await keyboard.type(Key.LeftSuper, Key.LeftShift, Key.G);
+    await searchTrashInFinder();
 
-    await keyboard.type("Bin");
-
-    await keyboard.type(Key.Enter);
     await sleep(200);
 
     await keyboard.type(Key.LeftSuper, Key.A);
@@ -132,11 +119,40 @@ fs.readdir(trashDir, async (err, files) => {
     ]);
 
     writeNote({
-        title: "Recycled Idea",
-        content: description,
+      title: "Recycled Idea",
+      content: description,
     });
 
 })();
+
+async function openFinder() {
+    await keyboard.type(Key.LeftSuper, Key.Space);
+    await keyboard.type("finder");
+    await sleep(100);
+    await keyboard.type(Key.Enter);
+}
+
+async function searchTrashInFinder() {
+    await keyboard.type(Key.LeftSuper, Key.LeftShift, Key.G);
+    await keyboard.type("Bin");
+    await keyboard.type(Key.Enter);
+}
+
+async function imageToDesktopWallpaper() {
+    await keyboard.type(Key.LeftControl, Key.LeftAlt, Key.LeftSuper, Key.T);
+}
+
+async function modifyTrashedImage() {}
+
+const trashedImageToWallpaperPrompt = `Turn this image into a desktop wallpaper`;
+const trashedImageToLogo = `Turn this image into a logo`;
+const trashedImageToMeme = `Turn this image into a meme`;
+const trashedImageToKeynote = `Turn this image into a keynote`;
+// const trashedImageToPoeticReading = `Turn this image into a poetic reading`;
+// const trashedImageToCodePoetry = `Turn this image into code poetry`;
+// const trashedImageToAlgorithmicArt = `Turn this image into algorithmic art`;
+// const trashedImageToHoroscope = `Turn this image into a horoscope`;
+// const trashedImageToRecipe = `Turn this image into a recipe`;
 
 async function writeNote(note) {
     await keyboard.type(Key.LeftSuper, Key.Space);
