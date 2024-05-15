@@ -2,6 +2,7 @@ import { image_to_base64, sleep, generate_speech, setPuppeteer, openai } from ".
 import { mouse, left, right, up, down, keyboard, Key, Window } from "@nut-tree-fork/nut-js";
 import pkg from "terminal-kit";
 import { openFinder, searchTrashInFinder, writeNote, imageToDesktopWallpaper } from "./keyboardFunctions.js";
+import { modify_image } from "./imageTransforms.js";
 import { readFiles } from "./fileReading.js";
 import * as prompt from "./prompts.js";
 const { terminal: term } = pkg;
@@ -28,10 +29,7 @@ watcher.on('add', (filePath) => {
     trashFiles.add(filePath);
   });
 
-  // -------- OPENAI API + OS KEYSTROKES ETC... --------
-
-  // our main array containing our entire chat history
-const messages = [prompt.baseSystemPrompt];
+const messages = [prompt.testImageBaseSystemPrompt];
 
 async function myNodeFunction() {
     // -------- FILE READING --------
@@ -58,9 +56,13 @@ async function myNodeFunction() {
     const filename = json_answer["filename"];
     const title = json_answer["title"];
     const content = json_answer["content"];
-    const prompt = json_answer["prompt"];
+    const imagePrompt = json_answer["imagePrompt"];
 
-    console.log(json_answer);
+    console.log(imagePrompt);
+
+    await modify_image(imagePrompt);
+
+    return;
 
     // ghost();
 

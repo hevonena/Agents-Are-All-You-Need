@@ -29,6 +29,6 @@ export async function downloadImageFromURL(url, path) {
 
 // const imagePath = path.join(downloadDir, "image.png");
 
-modify_image("Turn this image into a funny meme with a caption that says 'In crypto we trust'");
+// modify_image();
 
 // downloadImageFromURL("https://oaidalleapiprodscus.blob.core.windows.net/private/org-t99RSKR5bW0lhuWQlHWow0LD/user-7Z1DWNis9zUxppWZ98L5fXw1/img-cZAQp13qm4gNzvNPgHxcgCDM.png?st=2024-05-15T14%3A38%3A42Z&se=2024-05-15T16%3A38%3A42Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-05-15T10%3A34%3A46Z&ske=2024-05-16T10%3A34%3A46Z&sks=b&skv=2021-08-06&sig=RbgRpGIbKkZ4xxcJUoEaIv%2BvU0soCQQ87I1%2Bx2%2BiAbQ%3D", imagePath);
