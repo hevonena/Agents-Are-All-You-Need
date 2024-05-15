@@ -6,7 +6,7 @@ import path from "path";
 
 // DALL-E modify image API - Works with absolute path.
 
-export async function modify_image(imageDescription) {
+export async function modify_image(imageDescription, title) {
     const openai = new OpenAI(process.env.OPENAI_API_KEY);
 
     const response = await openai.images.generate({
@@ -16,7 +16,7 @@ export async function modify_image(imageDescription) {
         size: "1024x1024",
     });
 
-    downloadImageFromURL(response.data[0].url, path.join(downloadDir, "image.png"));
+    downloadImageFromURL(response.data[0].url, path.join(downloadDir, title+".png"));
 }
 
 export async function downloadImageFromURL(url, path) {

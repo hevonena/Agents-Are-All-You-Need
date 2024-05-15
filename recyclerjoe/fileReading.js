@@ -41,6 +41,7 @@ async function readTrashFiles() {
                 console.error(`Error converting image ${imageFiles[i]} to base64:`, error);
             }
         }
+        text += "next are the text files: ";
         for (let i = 0; i < textFiles.length; i++) {
             try {
                 const textFile = fs.readFileSync(path.join(trashDir, textFiles[i]), "utf8");

@@ -1,8 +1,9 @@
 import { image_to_base64, sleep, generate_speech, setPuppeteer, openai } from "../utils.js";
 import { mouse, left, right, up, down, keyboard, Key, Window } from "@nut-tree-fork/nut-js";
 import pkg from "terminal-kit";
-import { openFinder, searchTrashInFinder, writeNote, imageToDesktopWallpaper, makePresentation } from "./keyboardFunctions.js";
+import { openFinder, searchTrashInFinder, writeNote, imageToDesktopWallpaper, makePresentation, goToMeme } from "./keyboardFunctions.js";
 import { modify_image } from "./imageTransforms.js";
+import {downloadDir} from "./fileReading.js";
 import { readFiles } from "./fileReading.js";
 import * as prompt from "./prompts.js";
 const { terminal: term } = pkg;
@@ -29,7 +30,7 @@ watcher.on('add', (filePath) => {
     trashFiles.add(filePath);
   });
 
-const messages = [prompt.testKeynoteSystemPrompt];
+const messages = [prompt.baseSystemPrompt];
 
 async function myNodeFunction() {
     // -------- FILE READING --------
@@ -71,9 +72,8 @@ async function myNodeFunction() {
     }
 
     // await modify_image(imagePrompt);
-    await makePresentation(presentation);
+    // await makePresentation(presentation)
 
-    return;
 
     // ghost();
 
@@ -86,10 +86,11 @@ async function myNodeFunction() {
             
             break;
         case "meme":
-            
+            await goToMeme(downloadDir)
+            await modify_image(imagePrompt, title)
             break;
         case "keynote":
-            makePresentation(presentation);
+            await makePresentation(presentation);
             break;
         case "poetic reading":
             
