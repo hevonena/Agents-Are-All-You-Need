@@ -27,6 +27,7 @@ export const baseSystemPrompt = {
             "filename": "name of the image file",
             "prompt": "describe the wallpaper you want to create",
         }
+        
   `,
 };
 

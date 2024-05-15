@@ -49,3 +49,42 @@ export async function writeNote(note) {
     await keyboard.type(note.content);
     await sleep(100);
 }
+
+export async function makePresentation(presentation) {
+    await keyboard.type(Key.LeftSuper, Key.Space);
+    await keyboard.type("keynote");
+    await sleep(100);
+    await keyboard.type(Key.Enter);
+    await sleep(800);
+
+    await keyboard.type(Key.LeftSuper, Key.N);
+    await sleep(100);
+    await keyboard.type(Key.Enter);
+    await sleep(200);
+
+    // first slide
+    await keyboard.type(Key.Tab);
+    await keyboard.type(presentation.title);
+    await sleep(100);
+
+    await keyboard.type(Key.Escape);
+    await keyboard.type(Key.Tab);
+    await keyboard.type(Key.Tab);
+    await sleep(100);
+
+    await keyboard.type(presentation.subtitle);
+    await sleep(100);
+
+    // second slide
+    await keyboard.type(Key.LeftSuper, Key.LeftShift, Key.N);
+
+    await keyboard.type(Key.Tab);
+    await keyboard.type(presentation.slide1_title);
+    await sleep(100);
+
+    await keyboard.type(Key.Escape);
+    await keyboard.type(Key.Tab);
+    await keyboard.type(Key.Tab);
+    await sleep(100);
+
+}

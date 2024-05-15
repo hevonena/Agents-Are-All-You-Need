@@ -23,7 +23,6 @@ async function readTrashFiles() {
             console.error("Error reading the trash directory:", err);
             return;
         }
-        const allFiles = files.filter((file) => !/^\./.test(file));
         const imageFiles = files.filter((file) => /\.(jpg|jpeg|png)$/i.test(file));
         const textFiles = files.filter((file) => /\.(txt|js|html|)$/i.test(file));
         let text = "image file names in order: ";

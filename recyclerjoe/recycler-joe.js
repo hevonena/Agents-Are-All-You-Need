@@ -1,7 +1,7 @@
 import { image_to_base64, sleep, generate_speech, setPuppeteer, openai } from "../utils.js";
 import { mouse, left, right, up, down, keyboard, Key, Window } from "@nut-tree-fork/nut-js";
 import pkg from "terminal-kit";
-import { openFinder, searchTrashInFinder, writeNote, imageToDesktopWallpaper } from "./keyboardFunctions.js";
+import { openFinder, searchTrashInFinder, writeNote, imageToDesktopWallpaper, makePresentation } from "./keyboardFunctions.js";
 import { readFiles } from "./fileReading.js";
 import * as prompt from "./prompts.js";
 const { terminal: term } = pkg;
@@ -9,6 +9,7 @@ import { trashDir } from "./fileReading.js";
 import path from "path";
 import fs from "fs";
 import chokidar from 'chokidar';
+import { json } from "express";
 
 // -------- TRASH WATCHER --------
 const getTrashFiles = () => {
@@ -59,6 +60,16 @@ async function myNodeFunction() {
     const title = json_answer["title"];
     const content = json_answer["content"];
     const prompt = json_answer["prompt"];
+    const presentation = {
+        title: json_answer["title"],
+        subtitle: json_answer["subtitle"],
+        slide1_title: json_answer["slide1_title"],
+        slide1_subtitle: json_answer["slide1_subtitle"],
+        slide1_bullets: json_answer["slide1_bullets"],
+        slide2_title: json_answer["slide2_title"],
+        slide2_subtitle: json_answer["slide2_subtitle"],
+        slide2_bullets: json_answer["slide2_bullets"],
+    }
 
     console.log(json_answer);
 
@@ -76,7 +87,7 @@ async function myNodeFunction() {
             
             break;
         case "keynote":
-            
+            makePresentation(presentation);
             break;
         case "poetic reading":
             
