@@ -41,7 +41,7 @@ fs.readdir(trashDir, async (err, files) => {
             console.error(`Error reading text file ${textFiles[i]}:`, error);
         }
     }
-    content.push({
+    fileContent.push({
         type: "text",
         text: text,
     });
