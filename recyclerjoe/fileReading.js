@@ -4,6 +4,7 @@ import path from "path";
 import { image_to_base64 } from "../utils.js";
 
 export const homeDir = os.homedir();
+export const downloadDir = path.join(homeDir, "tempDownloads/");
 export const trashDir = path.join(homeDir, ".Trash/");
 const fileContent = [];
 
