@@ -1,6 +1,7 @@
 import { mouse, left, right, up, down, keyboard, Key, Window } from "@nut-tree-fork/nut-js";
 import { image_to_base64, sleep, generate_speech, setPuppeteer, openai } from "../utils.js";
-import { trashDir } from "./fileReading.js";
+import path from "path";
+import { homeDir, trashDir } from "./fileReading.js";
 
 keyboard.config.autoDelayMs = 100;
 
@@ -14,11 +15,20 @@ export async function openFinder() {
 export async function searchTrashInFinder() {
     await keyboard.type(Key.LeftSuper, Key.LeftShift, Key.G);
     await keyboard.type(trashDir);
+    await sleep(100);
     await keyboard.type(Key.Enter);
 }
 
-export async function imageToDesktopWallpaper() {
-    await keyboard.type(Key.LeftControl, Key.LeftAlt, Key.LeftSuper, Key.T);
+export async function imageToDesktopWallpaper(filePath) {
+    if (filePath !== undefined) {
+        await keyboard.type(Key.LeftSuper, Key.Space);
+        await sleep(100);
+        await keyboard.type(filePath);
+        await sleep(300);
+        await keyboard.type(Key.Enter);
+        await sleep(100);
+        await keyboard.type(Key.LeftControl, Key.LeftAlt, Key.LeftSuper, Key.T);
+    }
 }
 
 export async function modifyTrashedImage() {}
