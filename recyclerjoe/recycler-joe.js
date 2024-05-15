@@ -10,7 +10,6 @@ import { trashDir } from "./fileReading.js";
 import path from "path";
 import fs from "fs";
 import chokidar from 'chokidar';
-import { json } from "express";
 
 // -------- TRASH WATCHER --------
 const getTrashFiles = () => {
@@ -30,7 +29,7 @@ watcher.on('add', (filePath) => {
     trashFiles.add(filePath);
   });
 
-const messages = [prompt.testImageBaseSystemPrompt];
+const messages = [prompt.testKeynoteSystemPrompt];
 
 async function myNodeFunction() {
     // -------- FILE READING --------
@@ -57,8 +56,8 @@ async function myNodeFunction() {
     const filename = json_answer["filename"];
     const title = json_answer["title"];
     const content = json_answer["content"];
-
     const imagePrompt = json_answer["imagePrompt"];
+
     const presentation = {
         title: json_answer["title"],
         subtitle: json_answer["subtitle"],
@@ -70,10 +69,8 @@ async function myNodeFunction() {
         slide2_bullets: json_answer["slide2_bullets"],
     }
 
-
-    console.log(imagePrompt);
-
-    await modify_image(imagePrompt);
+    // await modify_image(imagePrompt);
+    await makePresentation(presentation);
 
     return;
 

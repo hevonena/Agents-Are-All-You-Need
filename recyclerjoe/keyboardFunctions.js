@@ -51,11 +51,12 @@ export async function writeNote(note) {
 }
 
 export async function makePresentation(presentation) {
+    console.log(presentation);
     await keyboard.type(Key.LeftSuper, Key.Space);
     await keyboard.type("keynote");
     await sleep(100);
     await keyboard.type(Key.Enter);
-    await sleep(800);
+    await sleep(2500);
 
     await keyboard.type(Key.LeftSuper, Key.N);
     await sleep(100);
@@ -85,6 +86,39 @@ export async function makePresentation(presentation) {
     await keyboard.type(Key.Escape);
     await keyboard.type(Key.Tab);
     await keyboard.type(Key.Tab);
+    await keyboard.type(presentation.slide1_subtitle);
     await sleep(100);
 
+    await keyboard.type(Key.Escape);
+    await keyboard.type(Key.Tab);
+    await keyboard.type(Key.Tab);
+    await keyboard.type(Key.Tab);
+    await keyboard.type(presentation.slide1_bullets);
+    await sleep(100);
+
+    // third slide
+    await keyboard.type(Key.LeftSuper, Key.LeftShift, Key.N);
+
+    await keyboard.type(Key.Tab);
+    await keyboard.type(presentation.slide2_title);
+    await sleep(100);
+
+    await keyboard.type(Key.Escape);
+    await keyboard.type(Key.Tab);
+    await keyboard.type(Key.Tab);
+    await keyboard.type(presentation.slide2_subtitle);
+    await sleep(100);
+
+    await keyboard.type(Key.Escape);
+    await keyboard.type(Key.Tab);
+    await keyboard.type(Key.Tab);
+    await keyboard.type(Key.Tab);
+    await keyboard.type(presentation.slide2_bullets);
+    await sleep(100);
+
+    // present
+    await keyboard.type(Key.LeftAlt, Key.LeftSuper, Key.P);
+    await keyboard.type(Key.Left);
+    await keyboard.type(Key.Left);
+    await keyboard.type(Key.Left);
 }
