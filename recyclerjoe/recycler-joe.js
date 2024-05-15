@@ -7,13 +7,33 @@ import * as prompt from "./prompts.js";
 const { terminal: term } = pkg;
 import { trashDir } from "./fileReading.js";
 import path from "path";
+import fs from "fs";
+import chokidar from 'chokidar';
 
-// -------- OPENAI API + OS KEYSTROKES ETC... --------
+// -------- TRASH WATCHER --------
+const getTrashFiles = () => {
+    return new Set(fs.readdirSync(trashDir).map(file => path.join(trashDir, file)));
+  };
+  
+let trashFiles = getTrashFiles();
+const watcher = chokidar.watch(trashDir, { persistent: true });
 
-// our main array containing our entire chat history
+// Event listeners
+watcher.on('add', (filePath) => {
+    if (!trashFiles.has(filePath)) {
+      console.log(`New file added to trash: ${filePath}`);
+      myNodeFunction(filePath);
+    }
+    // Update the set of trash files
+    trashFiles.add(filePath);
+  });
+
+  // -------- OPENAI API + OS KEYSTROKES ETC... --------
+
+  // our main array containing our entire chat history
 const messages = [prompt.baseSystemPrompt];
 
-(async () => {
+async function myNodeFunction() {
     // -------- FILE READING --------
     let fileContent = await readFiles();
     // our files
@@ -87,7 +107,7 @@ const messages = [prompt.baseSystemPrompt];
             break;
 
     }
-})();
+};
 
 async function ghost() {
     await openFinder();
