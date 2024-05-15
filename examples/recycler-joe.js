@@ -36,9 +36,8 @@ fs.readdir(trashDir, async (err, files) => {
     for (let i = 0; i < textFiles.length; i++) {
         try {
             const textFile = fs.readFileSync(path.join(trashDir, textFiles[i]), "utf8");
-            text += "file" +i+ ", filename: "+textFiles[i]+", content: "+textFile;
-        }
-        catch (error) {
+            text += "file" + i + ", filename: " + textFiles[i] + ", content: " + textFile;
+        } catch (error) {
             console.error(`Error reading text file ${textFiles[i]}:`, error);
         }
     }
@@ -51,8 +50,7 @@ fs.readdir(trashDir, async (err, files) => {
 
 // -------- OPENAI API + OS KEYSTROKES ETC... --------
 
-const baseSystemPrompt = 
-{
+const baseSystemPrompt = {
     role: "system",
     content: `You are Recycler Joe, an AI Agent that repurposes image files found in the trash bin in creative ways.
 
@@ -77,7 +75,6 @@ const baseSystemPrompt =
 const messages = [baseSystemPrompt];
 
 (async () => {
-
     // our files
     messages.push({
         role: "user",
@@ -119,10 +116,9 @@ const messages = [baseSystemPrompt];
     ]);
 
     writeNote({
-      title: "Recycled Idea",
-      content: description,
+        title: "Recycled Idea",
+        content: description,
     });
-
 })();
 
 async function openFinder() {
