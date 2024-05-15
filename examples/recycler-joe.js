@@ -26,25 +26,26 @@ fs.readdir(trashDir, async (err, files) => {
             const base64Image = await image_to_base64(path.join(trashDir, imageFiles[i]));
             fileContent.push({
                 type: "image_url",
-                // fileName: imageFiles[i],
                 image_url: base64Image,
             });
         } catch (error) {
             console.error(`Error converting image ${imageFiles[i]} to base64:`, error);
         }
     }
+    let text = "";
     for (let i = 0; i < textFiles.length; i++) {
         try {
-            const text = fs.readFileSync(path.join(trashDir, textFiles[i]), "utf8");
-            fileContent.push({
-                type: "text",
-                // fileName: textFiles[i],
-                text: text,
-            });
-        } catch (error) {
+            const textFile = fs.readFileSync(path.join(trashDir, textFiles[i]), "utf8");
+            text += "file" +i+ ", filename: "+textFiles[i]+", content: "+textFile;
+        }
+        catch (error) {
             console.error(`Error reading text file ${textFiles[i]}:`, error);
         }
     }
+    content.push({
+        type: "text",
+        text: text,
+    });
     console.log(fileContent);
 });
 
@@ -116,6 +117,12 @@ const messages = [baseSystemPrompt];
         }),
         generate_speech(description, "onyx"),
     ]);
+
+    writeNote({
+      title: "Recycled Idea",
+      content: description,
+    });
+
 })();
 
 async function openFinder() {
@@ -146,3 +153,20 @@ const trashedImageToKeynote = `Turn this image into a keynote`;
 // const trashedImageToAlgorithmicArt = `Turn this image into algorithmic art`;
 // const trashedImageToHoroscope = `Turn this image into a horoscope`;
 // const trashedImageToRecipe = `Turn this image into a recipe`;
+
+async function writeNote(note) {
+    await keyboard.type(Key.LeftSuper, Key.Space);
+    await keyboard.type("notes");
+    await sleep(100);
+    await keyboard.type(Key.Enter);
+    await sleep(200);
+
+    await keyboard.type(Key.LeftSuper, Key.N);
+    await sleep(100);
+    await keyboard.type(note.title);
+    await sleep(100);
+    await keyboard.type(Key.Enter);
+    await sleep(100);
+    await keyboard.type(note.content);
+    await sleep(100);
+}
