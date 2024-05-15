@@ -71,9 +71,14 @@ export async function makePresentation(presentation) {
     await keyboard.type(Key.Escape);
     await keyboard.type(Key.Tab);
     await keyboard.type(Key.Tab);
+    await keyboard.type(presentation.subtitle);
     await sleep(100);
 
-    await keyboard.type(presentation.subtitle);
+    await keyboard.type(Key.Escape);
+    await keyboard.type(Key.Tab);
+    await keyboard.type(Key.Tab);
+    await keyboard.type(Key.Tab);
+    await keyboard.type(presentation.author);
     await sleep(100);
 
     // second slide
@@ -93,7 +98,10 @@ export async function makePresentation(presentation) {
     await keyboard.type(Key.Tab);
     await keyboard.type(Key.Tab);
     await keyboard.type(Key.Tab);
-    await keyboard.type(presentation.slide1_bullets);
+    for (const point of presentation.slide1_bullets) {
+        await keyboard.type(Key.Enter);
+        await keyboard.type(point);
+      }
     await sleep(100);
 
     // third slide
@@ -113,7 +121,10 @@ export async function makePresentation(presentation) {
     await keyboard.type(Key.Tab);
     await keyboard.type(Key.Tab);
     await keyboard.type(Key.Tab);
-    await keyboard.type(presentation.slide2_bullets);
+    for (const point of presentation.slide2_bullets) {
+        await keyboard.type(Key.Enter);
+        await keyboard.type(point);
+      }
     await sleep(100);
 
     // present

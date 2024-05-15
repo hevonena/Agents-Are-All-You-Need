@@ -61,6 +61,7 @@ async function myNodeFunction() {
     const presentation = {
         title: json_answer["title"],
         subtitle: json_answer["subtitle"],
+        author: json_answer["author"],
         slide1_title: json_answer["slide1_title"],
         slide1_subtitle: json_answer["slide1_subtitle"],
         slide1_bullets: json_answer["slide1_bullets"],

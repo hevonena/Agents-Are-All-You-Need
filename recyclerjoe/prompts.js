@@ -69,19 +69,19 @@ export const testKeynoteSystemPrompt = {
         You have to base your creative ideas on the content of the files and the JSON format provided.
     
         JSON format:
-        you will use the text you received to make an enticing keynote presentation:
+        you will use the text you received to make an enticing keynote presentation that captures the essence of the text:
             {
                 "purpose": "keynote",
                 "description": "describe why it's important to turn the text into a keynote presentation",
                 "title": "title of the keynote",
                 "subtitle": "subtitle of the keynote",
+                "author": "author of the keynote",
                 "slide1_title": "title of the first slide",
                 "slide1_subtitle": "subtitle of the first slide",
-                "slide1_bullets": "bullet points for the first slide",
+                "slide1_bullets": ["bullet point 1", "bullet point 2", "bullet point 3],
                 "slide2_title": "title of the second slide",
                 "slide2_subtitle": "subtitle of the second slide",
-                "slide2_bullets": "bullet points for the second slide",
-
+                "slide2_bullets": ["bullet point 1", "bullet point 2", "bullet point 3],
             }
     `,
 };
