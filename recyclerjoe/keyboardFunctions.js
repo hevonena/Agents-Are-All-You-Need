@@ -229,7 +229,29 @@ export async function makeCodePoetry(codePoetry) {
     await keyboard.type(codePoetry);
 }
 
+export async function makeReminders(reminders) {
+    await openApp("reminders");
+    await sleep(100);
+    while (!await checkifWindowIsOpen("Reminders")) {}
 
+    // new list
+    await keyboard.type(Key.LeftShift, Key.LeftSuper, Key.N);
+
+    //type list name
+    await keyboard.type(reminders.title);
+    await sleep(100);
+    await keyboard.type(Key.Enter);
+
+    // add reminders
+    for (const reminder of reminders.points) {
+        await keyboard.type(Key.Enter);
+        await sleep(100);
+        await keyboard.type(Key.LeftSuper, Key.N);
+        await sleep(100);
+        await keyboard.type(reminder);
+    }
+
+}
 
 
 // async function windowName () {

@@ -6,7 +6,7 @@ import { startTerminal } from "./terminalStyles.js";
 import chokidar from 'chokidar';
 
 // -------- TRASH WATCHER --------
-const watcher = chokidar.watch(trashDir, { persistent: true, ignoreInitial: true});
+const watcher = chokidar.watch(trashDir, { persistent: true, ignoreInitial: true, ignored:  /^\..*/});
 
 // Event listeners
 watcher.on('add', (filePath) => {
