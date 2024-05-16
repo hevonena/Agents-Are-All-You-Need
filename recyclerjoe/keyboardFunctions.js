@@ -166,10 +166,10 @@ export async function checkIfKeynoteIsOpen() {
     const activeWindow = await getActiveWindow();
     const windowTitle =  await activeWindow.getTitle();
     if (windowTitle === "Open") {
-        sleep(100);
+        await sleep(100);
         return true;
     } else {
-        sleep(100);
+        await sleep(100);
         return false;
     }
 }
@@ -178,10 +178,27 @@ export async function checkifWindowIsOpen(windowName) {
     const activeWindow = await getActiveWindow();
     const windowTitle =  await activeWindow.getTitle();
     if (windowTitle === windowName) {
-        sleep(100);
+        await sleep(100);
         return true;
     } else {
-        sleep(100);
+        await sleep(100);
         return false;
     }
+}
+
+export async function makeCodePoetry() {
+    await openApp("vscode");
+    await sleep(100);
+    while (!await checkifWindowIsOpen("vscode")) {}
+
+    //new window
+    await keyboard.type(Key.LeftSuper, Key.LeftShift, Key.N);
+    await sleep(100);
+
+    // new file
+    await keyboard.type(Key.LeftControl, Key.LeftAlt, Key.LeftSuper, Key.N);
+    await sleep(100);
+
+    
+
 }
