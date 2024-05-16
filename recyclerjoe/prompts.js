@@ -24,7 +24,7 @@ export function getRandomPrompt(fileName) {
                 All options are good options, don't be afraid to try new things and switch your rhythm! 
                 
                 JSON format:"
-                ${fromText[3]}
+                ${fromText[1]}
            `,
         };
     }
@@ -46,9 +46,11 @@ const fromText = [
     `to turn the text into a recipe or any other creative text-based format:
     {
         "purpose": "recipe",
-        "description": "describe why it's important to turn the text into a recipe",
-        "title": "title of recipe",
-        "content": "a recipe based on the text",
+        "description": "describe why it's important to turn the text into a food recipe",
+        "title": "title of the dish",
+        "content": "a recipe based on the text that mentions ingredients and steps to prepare the dish",
+        "imagePrompt": "describe the dish in exquisite detail, make sure to include the main ingredients and the final presentation",
+        "fileName": "a creative file name for the recipe image without the extension",
     }`,
     `to turn the text into a horoscope or any other creative text-based format:
     {
