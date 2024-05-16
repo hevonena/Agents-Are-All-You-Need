@@ -14,6 +14,7 @@ export async function parseAnswerForJoe(json_answer) {
         imagePrompt: json_answer["imagePrompt"],
         codePoetry: json_answer["codePoetry"],
         songName: json_answer["songName"],
+        points: json_answer["points"],
     };
 
     const gptPresentation = {
@@ -45,7 +46,9 @@ export async function switchCase(parsedAnswerForJoe) {
             await keyboardAction.imageToDesktopWallpaper(filePath);
             generate_speech("Yo brooooo do you like this new desktop wallpaper ? I tried to keep some of the original elements, let me know what you think...", "onyx")
             break;
-        case "logo":
+        case "reminder":
+            generate_speech(gptResponse.description, "onyx");
+            await makeReminder(gptResponse.title, gptResponse.points);
             break;
         case "movie":
             generate_speech(gptResponse.description, "onyx");
