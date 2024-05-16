@@ -1,13 +1,8 @@
-import { image_to_base64, sleep, generate_speech, setPuppeteer, openai } from "../utils.js";
-import { mouse, left, right, up, down, keyboard, Key, Window } from "@nut-tree-fork/nut-js";
-import { openFinder, searchTrashInFinder, writeNote, imageToDesktopWallpaper, makePresentation, goToMeme } from "./keyboardFunctions.js";
-import { modify_image } from "./imageTransforms.js";
-import {downloadDir, readFiles, trashDir} from "./fileReading.js";
+import { openai } from "../utils.js";
+import { readFiles, trashDir } from "./fileReading.js";
 import { switchCase, parseAnswerForJoe } from "./joeCases.js";
 import * as prompt from "./prompts.js";
 import { startTerminal } from "./terminalStyles.js";
-import path from "path";
-import fs from "fs";
 import chokidar from 'chokidar';
 
 // -------- TRASH WATCHER --------
