@@ -9,8 +9,8 @@ export function getRandomPrompt(fileName) {
                 You have to be pertinent and base your ideas on what you receive and follow the JSON format provided. 
                 All options are good options, don't be afraid to try new things and switch your rhythm! 
                 
-                JSON format:" + fromText[0]
-                ${fromImage[0]}
+                JSON format:"
+                ${getRandomJSON(fromImage)}
                 `,
         };
     } else {
@@ -23,14 +23,19 @@ export function getRandomPrompt(fileName) {
                 You have to be pertinent and base your ideas on what you receive and follow the JSON format provided. 
                 All options are good options, don't be afraid to try new things and switch your rhythm! 
                 
-                JSON format:" + fromText[0]
-                ${fromText[0]}
+                JSON format:"
+                ${getRandomJSON(fromText)}
                 `,
         };
     }
 }
 
 const randomProperty = (arr) => {};
+function getRandomJSON(promptList) {
+    const randomIndex = Math.floor(Math.random() * promptList.length);
+    return promptList[randomIndex];
+}
+
 
 const fromText = [
     `to turn the text into a poem, recipe, or horoscope or any other creative text-based format:
@@ -80,6 +85,13 @@ const fromText = [
         "slide2_title": "title of the second slide",
         "slide2_subtitle": "subtitle of the second slide",
         "slide2_bullets": ["bullet point 1", "bullet point 2", "bullet point 3],
+    }`,
+    `to turn the text into a absurd reminders that are both funny and maybe useful:
+    {
+        "purpose": "reminder",
+        "description": "describe why it might be important to turn the text into a reminder",
+        "title": "title of the reminder",
+        "points": ["point 1", "point 2", "point 3],
     }`,
 ];
 

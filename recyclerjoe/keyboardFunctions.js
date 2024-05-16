@@ -31,7 +31,6 @@ export async function imageToDesktopWallpaper(filePath) {
         await sleep(500);
         await keyboard.type(Key.LeftControl, Key.LeftAlt, Key.LeftSuper, Key.T);
         await sleep(200);
-        await 
     }
 }
 
@@ -48,14 +47,22 @@ export async function openApp(appName) {
 }
 
 export async function writeNote(note) {
-    await keyboard.type(Key.LeftSuper, Key.Space);
-    await keyboard.type("notes");
-    await sleep(100);
-    await keyboard.type(Key.Enter);
-    await sleep(200);
+    // await keyboard.type(Key.LeftSuper, Key.Space);
+    // await keyboard.type("notes");
+    // await sleep(100);
+    // await keyboard.type(Key.Enter);
+    // await sleep(200);
 
-    await keyboard.type(Key.LeftSuper, Key.N);
+    // await keyboard.type(Key.LeftSuper, Key.N);
+
+    await keyboard.type(Key.Fn, Key.Q);
     await sleep(100);
+    await keyboard.type(Key.LeftSuper, Key.A);
+    await sleep(100);
+    await keyboard.type(Key.LeftSuper, Key.X);
+    await sleep(100);
+    
+
     await keyboard.type(note.title);
     await sleep(100);
     await keyboard.type(Key.Enter);
@@ -229,26 +236,27 @@ export async function makeCodePoetry(codePoetry) {
     await keyboard.type(codePoetry);
 }
 
-export async function makeReminders(reminders) {
+export async function makeReminder(title, points) {
     await openApp("reminders");
     await sleep(100);
     while (!await checkifWindowIsOpen("Reminders")) {}
-
+    await sleep(300);
+    
     // new list
     await keyboard.type(Key.LeftShift, Key.LeftSuper, Key.N);
 
     //type list name
-    await keyboard.type(reminders.title);
+    await keyboard.type(title);
     await sleep(100);
     await keyboard.type(Key.Enter);
 
     // add reminders
-    for (const reminder of reminders.points) {
+    for (const point of points) {
         await keyboard.type(Key.Enter);
         await sleep(100);
         await keyboard.type(Key.LeftSuper, Key.N);
         await sleep(100);
-        await keyboard.type(reminder);
+        await keyboard.type(point);
     }
 
 }
