@@ -1,3 +1,7 @@
+import { generate_speech } from "../utils";
+import { modify_image } from "./imageTransforms";
+import * as keyboardAction from "./keyboardFunctions";
+
 export async function parseAnswerForJoe(json_answer) {
     const gptResponse = {
         purpose: json_answer["purpose"],
@@ -32,18 +36,18 @@ export async function switchCase(parsedAnswerForJoe) {
         case "wallpaper":
             generate_speech(gptResponse.description, "onyx");
             const filePath = path.join(trashDir, gptResponse.filename);
-            await imageToDesktopWallpaper(filePath);
+            await keyboardAction.imageToDesktopWallpaper(filePath);
             break;
         case "logo":
             break;
         case "meme":
             generate_speech(gptResponse.description, "onyx");
-            await goToMeme(downloadDir);
+            await keyboardAction.goToMeme(downloadDir);
             await modify_image(gptResponse.imagePrompt, gptResponse.title);
             break;
         case "keynote":
             generate_speech(gptResponse.description, "onyx");
-            await makePresentation(gptPresentation);
+            await keyboardAction.makePresentation(gptPresentation);
             break;
         case "poetic reading":
             await generate_speech(gptResponse.title, "onyx");
@@ -55,21 +59,21 @@ export async function switchCase(parsedAnswerForJoe) {
             break;
         case "horoscope":
             generate_speech(gptResponse.description, "onyx");
-            await writeNote({
+            await keyboardAction.writeNote({
                 title: gptResponse.title,
                 content: gptResponse.content,
             });
             break;
         case "recipe":
             generate_speech(gptResponse.description, "onyx");
-            await writeNote({
+            await keyboardAction.writeNote({
                 title: gptResponse.title,
                 content: gptResponse.content,
             });
             break;
         case "poem":
             generate_speech(gptResponse.description, "onyx");
-            await writeNote({
+            await keyboardAction.writeNote({
                 title: gptResponse.title,
                 content: gptResponse.content,
             });
