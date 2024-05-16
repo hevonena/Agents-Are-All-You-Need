@@ -3,7 +3,7 @@ import { mouse, left, right, up, down, keyboard, Key, Window } from "@nut-tree-f
 import pkg from "terminal-kit";
 import { openFinder, searchTrashInFinder, writeNote, imageToDesktopWallpaper, makePresentation, goToMeme } from "./keyboardFunctions.js";
 import { modify_image } from "./imageTransforms.js";
-import {downloadDir} from "./fileReading.js";
+import { downloadDir } from "./fileReading.js";
 import { readFiles } from "./fileReading.js";
 import * as prompt from "./prompts.js";
 const { terminal: term } = pkg;
@@ -15,20 +15,20 @@ import chokidar from 'chokidar';
 // -------- TRASH WATCHER --------
 const getTrashFiles = () => {
     return new Set(fs.readdirSync(trashDir).map(file => path.join(trashDir, file)));
-  };
-  
+};
+
 let trashFiles = getTrashFiles();
 const watcher = chokidar.watch(trashDir, { persistent: true });
 
 // Event listeners
 watcher.on('add', (filePath) => {
     if (!trashFiles.has(filePath)) {
-      console.log(`New file added to trash: ${filePath}`);
-      myNodeFunction(filePath);
+        console.log(`New file added to trash: ${filePath}`);
+        myNodeFunction(filePath);
     }
     // Update the set of trash files
     trashFiles.add(filePath);
-  });
+});
 
 const messages = [prompt.baseSystemPrompt];
 
@@ -77,8 +77,8 @@ async function myNodeFunction() {
     // await makePresentation(presentation)
 
 
-    
-    
+
+
 
     switch (purpose) {
         case "wallpaper":
@@ -87,7 +87,7 @@ async function myNodeFunction() {
             await imageToDesktopWallpaper(filePath);
             break;
         case "logo":
-            
+
             break;
         case "meme":
             generate_speech(description, "onyx")
@@ -103,10 +103,10 @@ async function myNodeFunction() {
             generate_speech(content, "onyx")
             break;
         case "code poetry":
-            
+
             break;
         case "algorithmic art":
-            
+
             break;
         case "horoscope":
             generate_speech(description, "onyx")
