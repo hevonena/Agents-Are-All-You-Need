@@ -48,7 +48,13 @@ export const baseSystemPrompt = {
             "slide2_subtitle": "subtitle of the second slide",
             "slide2_bullets": ["bullet point 1", "bullet point 2", "bullet point 3],
         }
-
+    to create a poetic reading which plunges the reader into the text:
+        {
+            "purpose": "poetic reading",
+            "description": "describe why it's important to turn the text into a poetic reading",
+            "title": "title of the poetic reading",
+            "content": "content of the poetic reading",
+        }
   `,
 };
 

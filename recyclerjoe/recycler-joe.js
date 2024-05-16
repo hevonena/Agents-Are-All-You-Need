@@ -33,6 +33,8 @@ watcher.on('add', (filePath) => {
 const messages = [prompt.baseSystemPrompt];
 
 async function myNodeFunction() {
+    // ghost(); // go to trash and "read" files
+
     // -------- FILE READING --------
     let fileContent = await readFiles();
     // our files
@@ -75,10 +77,12 @@ async function myNodeFunction() {
     // await makePresentation(presentation)
 
 
-    // ghost();
+    
+    
 
     switch (purpose) {
         case "wallpaper":
+            generate_speech(description, "onyx")
             const filePath = path.join(trashDir, filename);
             await imageToDesktopWallpaper(filePath);
             break;
@@ -86,14 +90,17 @@ async function myNodeFunction() {
             
             break;
         case "meme":
+            generate_speech(description, "onyx")
             await goToMeme(downloadDir)
             await modify_image(imagePrompt, title)
             break;
         case "keynote":
+            generate_speech(description, "onyx")
             await makePresentation(presentation);
             break;
         case "poetic reading":
-            
+            await generate_speech(title, "onyx")
+            generate_speech(content, "onyx")
             break;
         case "code poetry":
             
@@ -102,18 +109,21 @@ async function myNodeFunction() {
             
             break;
         case "horoscope":
+            generate_speech(description, "onyx")
             await writeNote({
                 title: title,
                 content: content,
             });
             break;
         case "recipe":
+            generate_speech(description, "onyx")
             await writeNote({
                 title: title,
                 content: content,
             });
             break;
         case "poem":
+            generate_speech(description, "onyx")
             await writeNote({
                 title: title,
                 content: content,

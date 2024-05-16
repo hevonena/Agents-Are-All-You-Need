@@ -52,12 +52,11 @@ export async function writeNote(note) {
 }
 
 export async function makePresentation(presentation) {
-    console.log(presentation);
     await keyboard.type(Key.LeftSuper, Key.Space);
     await keyboard.type("keynote");
     await sleep(100);
     await keyboard.type(Key.Enter);
-    await sleep(2500);
+    await sleep(3500);
 
     await keyboard.type(Key.LeftSuper, Key.N);
     await sleep(100);
@@ -141,4 +140,16 @@ export async function goToMeme(path) {
     await keyboard.type(path);
     await sleep(100);
     await keyboard.type(Key.Enter);
+    await sleep(100);
+    await keyboard.type(Key.Right);
+    await sleep(100);
+
+    for (let i = 0; i < 10; i++) {
+        if (Math.random() > 0.5) {
+            await keyboard.type(Key.Up);
+        } else {
+            await keyboard.type(Key.Down);
+        }
+        await sleep(200);
+    }
 }
