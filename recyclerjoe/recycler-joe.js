@@ -3,11 +3,10 @@ import { mouse, left, right, up, down, keyboard, Key, Window } from "@nut-tree-f
 import pkg from "terminal-kit";
 import { openFinder, searchTrashInFinder, writeNote, imageToDesktopWallpaper, makePresentation, goToMeme } from "./keyboardFunctions.js";
 import { modify_image } from "./imageTransforms.js";
-import { downloadDir } from "./fileReading.js";
-import { readFiles } from "./fileReading.js";
+import {downloadDir, readFiles, trashDir} from "./fileReading.js";
+import { switchCase } from "./joeCases.js";
 import * as prompt from "./prompts.js";
 const { terminal: term } = pkg;
-import { trashDir } from "./fileReading.js";
 import path from "path";
 import fs from "fs";
 import chokidar from 'chokidar';
@@ -75,62 +74,7 @@ async function myNodeFunction() {
 
     // await modify_image(imagePrompt);
     // await makePresentation(presentation)
-
-
-
-
-
-    switch (purpose) {
-        case "wallpaper":
-            generate_speech(description, "onyx")
-            const filePath = path.join(trashDir, filename);
-            await imageToDesktopWallpaper(filePath);
-            break;
-        case "logo":
-
-            break;
-        case "meme":
-            generate_speech(description, "onyx")
-            await goToMeme(downloadDir)
-            await modify_image(imagePrompt, title)
-            break;
-        case "keynote":
-            generate_speech(description, "onyx")
-            await makePresentation(presentation);
-            break;
-        case "poetic reading":
-            await generate_speech(title, "onyx")
-            generate_speech(content, "onyx")
-            break;
-        case "code poetry":
-
-            break;
-        case "algorithmic art":
-
-            break;
-        case "horoscope":
-            generate_speech(description, "onyx")
-            await writeNote({
-                title: title,
-                content: content,
-            });
-            break;
-        case "recipe":
-            generate_speech(description, "onyx")
-            await writeNote({
-                title: title,
-                content: content,
-            });
-            break;
-        case "poem":
-            generate_speech(description, "onyx")
-            await writeNote({
-                title: title,
-                content: content,
-            });
-            break;
-
-    }
+    switchCase(purpose);
 };
 
 async function ghost() {
