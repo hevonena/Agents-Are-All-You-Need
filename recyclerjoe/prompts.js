@@ -70,3 +70,32 @@ export function getRandomPrompt() {
 }
 
 
+const fromText = {
+    poem: `to turn the text into a poem, recipe, or horoscope or any other creative text-based format:
+    {
+        "purpose": "poem",
+        "description": "describe why it's important to turn the text into a <purpose>",
+        "title": "title of <purpose>",
+        "content": "a poem based on the text",
+    }`,
+    recipe: `to turn the text into a poem, recipe, or horoscope or any other creative text-based format:
+    {
+        "purpose": "recipe",
+        "description": "describe why it's important to turn the text into a <purpose>",
+        "title": "title of <purpose>",
+        "content": "a recipe based on the text",
+    }`,
+    horoscope: `to turn the text into a poem, recipe, or horoscope or any other creative text-based format:
+    {
+        "purpose": "horoscope",
+        "description": "describe why it's important to turn the text into a <purpose>",
+        "title": "title of <purpose>",
+        "content": "a horoscope based on the text",
+    }`,
+    poeticReading: `to turn the files into code poetry that is both beautiful and oriented object:
+    {
+        "purpose": "code poetry",
+        "description": "describe why it's important to turn the files into code poetry",
+        "codePoetry": "the code poetry itself, be expressive and programmatic",
+    }`,
+}
