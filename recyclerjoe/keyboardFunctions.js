@@ -178,7 +178,7 @@ export async function goToMovie(filePath, songName) {
 
 export async function playSongOnSpotify(songName) {
     await openApp("spotify");
-    while (!(await checkifWindowIsOpen("Spotify Premium"))) {}
+    while (!(await checkifWindowIsOpen("Spotify"))) {}
     await sleep(1500);
     await keyboard.type(Key.LeftSuper, Key.L);
     await sleep(100);
@@ -211,7 +211,7 @@ export async function checkIfKeynoteIsOpen() {
 export async function checkifWindowIsOpen(windowName) {
     const activeWindow = await getActiveWindow();
     const windowTitle =  await activeWindow.getTitle();
-    if (windowTitle === windowName) {
+    if (windowTitle.includes(windowName)) {
         await sleep(100);
         return true;
     } else {
