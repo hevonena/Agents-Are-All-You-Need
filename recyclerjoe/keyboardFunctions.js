@@ -10,7 +10,7 @@ export async function openFinder() {
     await keyboard.type("finder");
     await sleep(100);
     await keyboard.type(Key.Enter);
-    sleep(100);
+    await sleep(100);
 }
 
 export async function searchTrashInFinder() {
@@ -24,6 +24,7 @@ export async function imageToDesktopWallpaper(filePath) {
     if (filePath !== undefined) {
         await openFinder();
         await keyboard.type(Key.LeftSuper, Key.LeftShift, Key.G);
+        await sleep(300);
         await keyboard.type(filePath);
         await sleep(300);
         await keyboard.type(Key.Enter);
