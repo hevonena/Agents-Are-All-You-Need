@@ -5,7 +5,7 @@ import { modify_image } from "./imageTransforms.js";
 import {downloadDir, readFiles, trashDir} from "./fileReading.js";
 import { switchCase, parseAnswerForJoe } from "./joeCases.js";
 import * as prompt from "./prompts.js";
-import { startTerminal } from "./terminal.js";
+import { startTerminal } from "./terminalStyles.js";
 import path from "path";
 import fs from "fs";
 import chokidar from 'chokidar';
