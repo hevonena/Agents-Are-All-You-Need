@@ -18,5 +18,5 @@ export async function startTerminal() {
     });
 
     await term.spinner("asciiSpinner");
-    await term(" Looking at your 🗑️  trash bin hehe 👀 ");
+    await term(" Looking at your 🗑️  trash bin hehe 👀 \n");
 }
