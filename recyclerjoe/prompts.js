@@ -10,7 +10,7 @@ export function getRandomPrompt(fileName) {
                 All options are good options, don't be afraid to try new things and switch your rhythm! 
                 
                 JSON format:"
-                ${getRandomJSON(fromImage)}
+                ${fromImage[1]}
                 `,
         };
     } else {
@@ -24,7 +24,7 @@ export function getRandomPrompt(fileName) {
                 All options are good options, don't be afraid to try new things and switch your rhythm! 
                 
                 JSON format:"
-                ${getRandomJSON(fromText)}
+                ${fromText[3]}
                 `,
         };
     }
@@ -36,39 +36,26 @@ function getRandomJSON(promptList) {
 }
 
 const fromText = [
-    `to turn the text into a poem, recipe, or horoscope or any other creative text-based format:
+    `to turn the text into a poem or any other creative text-based format:
     {
         "purpose": "poem",
-        "description": "describe why it's important to turn the text into a <purpose>",
-        "title": "title of <purpose>",
-        "content": "a poem based on the text",
+        "description": "describe why it's important to turn the text into a poem",
+        "title": "title of poem",
+        "content": "a poem based on the text no longer than 5 verses",
     }`,
-    `to turn the text into a poem, recipe, or horoscope or any other creative text-based format:
+    `to turn the text into a recipe or any other creative text-based format:
     {
         "purpose": "recipe",
-        "description": "describe why it's important to turn the text into a <purpose>",
-        "title": "title of <purpose>",
+        "description": "describe why it's important to turn the text into a recipe",
+        "title": "title of recipe",
         "content": "a recipe based on the text",
     }`,
-    `to turn the text into a poem, recipe, or horoscope or any other creative text-based format:
+    `to turn the text into a horoscope or any other creative text-based format:
     {
         "purpose": "horoscope",
-        "description": "describe why it's important to turn the text into a <purpose>",
-        "title": "title of <purpose>",
+        "description": "describe why it's important to turn the text into a horoscope",
+        "title": "title of horoscope",
         "content": "a horoscope based on the text",
-    }`,
-    `to turn the files into code poetry that is both beautiful and oriented object:
-    {
-        "purpose": "code poetry",
-        "description": "describe why it's important to turn the files into code poetry",
-        "codePoetry": "the code poetry itself, be expressive and programmatic",
-    }`,
-    `to create a poetic reading which plunges the reader into the text:
-    {
-        "purpose": "poetic reading",
-        "description": "describe why it's important to turn the text into a poetic reading",
-        "title": "title of the poetic reading",
-        "content": "content of the poetic reading",
     }`,
     `to use the text and make an enticing keynote presentation that captures the essence of the text:
     {

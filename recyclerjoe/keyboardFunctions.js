@@ -48,28 +48,33 @@ export async function openApp(appName) {
 }
 
 export async function writeNote(note) {
-    // await keyboard.type(Key.LeftSuper, Key.Space);
-    // await keyboard.type("notes");
-    // await sleep(100);
-    // await keyboard.type(Key.Enter);
-    // await sleep(200);
-
-    // await keyboard.type(Key.LeftSuper, Key.N);
-
     await keyboard.type(Key.Fn, Key.Q);
-    await sleep(100);
+    await sleep(1000);
     await keyboard.type(Key.LeftSuper, Key.A);
-    await sleep(100);
+    await sleep(200);
     await keyboard.type(Key.LeftSuper, Key.X);
-    await sleep(100);
+    await sleep(200);
     
-
     await keyboard.type(note.title);
-    await sleep(100);
+    await sleep(300);
     await keyboard.type(Key.Enter);
     await sleep(100);
+
+    keyboard.config.autoDelayMs = 60;
     await keyboard.type(note.content);
     await sleep(100);
+    keyboard.config.autoDelayMs = 100;
+
+    // select all
+    await keyboard.type(Key.LeftSuper, Key.A);
+    await sleep(400);
+    // start speaking
+    await keyboard.type(Key.LeftControl, Key.LeftAlt, Key.LeftSuper, Key.S);
+    // bigger text
+    for (let i = 0; i < 5; i++) {
+        await keyboard.type(Key.LeftControl, Key.LeftAlt, Key.LeftSuper, Key.B);
+    }
+
 }
 
 export async function makePresentation(presentation) {
@@ -226,15 +231,14 @@ export async function checkifWindowIsOpen(windowName) {
 
 export async function makeCodePoetry(codePoetry) {
     await openApp("vscode");
-    await sleep(100);
-    while (!await checkifWindowIsOpen("Welcome")) {}
-
+    await sleep(2000);
+    
     //new window
     await keyboard.type(Key.LeftSuper, Key.LeftShift, Key.N);
-    await sleep(100);
+    await sleep(700);
 
     // new text file
-    await keyboard.type(Key.LeftControl, Key.N);
+    await keyboard.type(Key.LeftSuper, Key.N);
     await sleep(100);
 
     // type code poetry
