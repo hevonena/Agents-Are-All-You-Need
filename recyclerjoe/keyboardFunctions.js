@@ -144,7 +144,9 @@ export async function makePresentation(presentation) {
 
 export async function goToMeme(path) {
     await openFinder();
+    await sleep(200);
     await keyboard.type(Key.LeftSuper, Key.LeftShift, Key.G);
+    await sleep(200);
     await keyboard.type(path);
     await sleep(100);
     await keyboard.type(Key.Enter);

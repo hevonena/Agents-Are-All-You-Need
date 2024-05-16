@@ -24,21 +24,31 @@ async function readTrashFiles() {
             return;
         }
         const imageFiles = files.filter((file) => /\.(jpg|jpeg|png)$/i.test(file));
-        const textFiles = files.filter((file) => /\.(txt|js|html|)$/i.test(file));
+        const textFiles = files.filter((file) => /\.(txt|js|html|py)$/i.test(file));
         let text = "image file names in order: ";
 
-        for (let i = 0; i < imageFiles.length; i++) {
+        const imageFilesWithStats = await Promise.all(imageFiles.map(async (file) => {
+            const filePath = path.join(trashDir, file);
+            const stats = await fs.promises.stat(filePath);
+            return { file, mtime: stats.mtime };
+        }));
+
+        const sortedImageFiles = imageFilesWithStats.sort((a, b) => b.mtime - a.mtime);
+        let n = 3;
+        const lastNImages = sortedImageFiles.slice(0, n).map((fileInfo) => fileInfo.file);
+
+        for (const imageFile of lastNImages) {
             try {
-                const base64Image =  await image_to_base64(path.join(trashDir, imageFiles[i]));
+                const base64Image =  await image_to_base64(path.join(trashDir, imageFile));
                 fileContent.push({
                     type: "image_url",
                     image_url: {
                         url: base64Image,
                       },
                 });
-                text += imageFiles[i] + ", "
+                text += imageFile + ", "
             } catch (error) {
-                console.error(`Error converting image ${imageFiles[i]} to base64:`, error);
+                console.error(`Error converting image ${imageFile} to base64:`, error);
             }
         }
         text += "next are the text files: ";
