@@ -183,7 +183,7 @@ export async function goToMovie(filePath, songName) {
 export async function playSongOnSpotify(songName) {
     await openApp("spotify");
     while (!(await checkifWindowIsOpen("Spotify"))) {}
-    await sleep(1500);
+    await sleep(2000);
     await keyboard.type(Key.LeftSuper, Key.L);
     await sleep(100);
     await keyboard.type(songName);
