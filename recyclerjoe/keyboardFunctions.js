@@ -1,4 +1,4 @@
-import { mouse, left, right, up, down, keyboard, Key, Window, getActiveWindow, clipboard } from "@nut-tree-fork/nut-js";
+import { mouse, left, right, up, down, keyboard, Key, Window, getActiveWindow, clipboard, textLine } from "@nut-tree-fork/nut-js";
 import { image_to_base64, sleep, generate_speech, setPuppeteer, openai } from "../utils.js";
 import path from "path";
 import fs from "fs";

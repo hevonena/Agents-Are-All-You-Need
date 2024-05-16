@@ -74,13 +74,6 @@ const fromText = [
         "slide2_bullets": ["bullet point 1", "bullet point 2", "bullet point 3],
         "songName": "suggest a known song that could be used in the keynote and that fits the theme, make sure the song exists., format: 'Artist - Song Name',
     }`,
-    `to turn the text into a absurd reminders that are both funny and maybe useful, the max number of points is 3:
-    {
-        "purpose": "reminder",
-        "description": "describe why it might be important to turn the text into a reminder",
-        "title": "title of the reminder",
-        "points": ["point 1", "point 2", "point 3],
-    }`,
 ];
 
 const fromImage = [
