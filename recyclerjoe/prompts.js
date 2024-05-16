@@ -30,12 +30,10 @@ export function getRandomPrompt(fileName) {
     }
 }
 
-const randomProperty = (arr) => {};
 function getRandomJSON(promptList) {
     const randomIndex = Math.floor(Math.random() * promptList.length);
     return promptList[randomIndex];
 }
-
 
 const fromText = [
     `to turn the text into a poem, recipe, or horoscope or any other creative text-based format:

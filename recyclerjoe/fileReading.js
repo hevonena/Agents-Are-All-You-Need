@@ -31,10 +31,10 @@ async function readTrashFiles() {
         const imageFilesWithStats = await Promise.all(imageFiles.map(async (file) => {
             const filePath = path.join(trashDir, file);
             const stats = await fs.promises.stat(filePath);
-            return { file, mtime: stats.mtime };
+            return { file, ctime: stats.ctime };
         }));
 
-        const sortedImageFiles = imageFilesWithStats.sort((a, b) => b.mtime - a.mtime);
+        const sortedImageFiles = imageFilesWithStats.sort((a, b) => b.ctime - a.ctime);
         sortedImageFiles.reverse();
         let n = 1;
         const lastNImages = sortedImageFiles.slice(0, n).map((fileInfo) => fileInfo.file);
