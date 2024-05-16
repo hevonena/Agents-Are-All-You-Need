@@ -20,8 +20,7 @@ startTerminal();
 async function myNodeFunction() {
 
     // -------- FILE READING --------
-    let fileContent = await readFiles().fileContent;
-    let fileName = await readFiles().fileName;
+    let { fileContent, fileName } = await readFiles();
 
     const gptChatHistory = [];
     gptChatHistory.push(prompt.getRandomPrompt(fileName));
