@@ -164,6 +164,10 @@ export async function goToMovie(filePath, songName) {
     await sleep(200);
     await keyboard.type(filePath);
     await sleep(200);
+    while (!(fs.existsSync(filePath + ".png"))) {
+        await sleep(100);
+        console.log("waiting for file to be copied");
+    }
     await keyboard.type(Key.Enter);
     await sleep(500);
     await keyboard.type(Key.LeftSuper, Key.O);
