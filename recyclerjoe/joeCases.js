@@ -8,11 +8,12 @@ export async function parseAnswerForJoe(json_answer) {
     const gptResponse = {
         purpose: json_answer["purpose"],
         description: json_answer["description"],
-        filename: json_answer["filename"],
+        fileName: json_answer["fileName"],
         title: json_answer["title"],
         content: json_answer["content"],
         imagePrompt: json_answer["imagePrompt"],
         codePoetry: json_answer["codePoetry"],
+        songName: json_answer["songName"],
     };
 
     const gptPresentation = {
@@ -34,22 +35,22 @@ export async function switchCase(parsedAnswerForJoe) {
 
     const gptResponse = parsedAnswerForJoe.gptResponse;
     const gptPresentation = parsedAnswerForJoe.gptPresentation;
+    let filePath = "";
 
     switch (gptResponse.purpose) {
         case "wallpaper":
             generate_speech(gptResponse.description, "onyx");
-            const filePath = path.join(trashDir, gptResponse.filename);
+            await modify_image(gptResponse.imagePrompt, gptResponse.fileName);
+            filePath = path.join(downloadDir, gptResponse.fileName);
             await keyboardAction.imageToDesktopWallpaper(filePath);
             break;
         case "logo":
             break;
-        case "meme":
+        case "movie":
             generate_speech(gptResponse.description, "onyx");
-            const filePath2 = path.join(trashDir, gptResponse.filename);
-            await keyboardAction.imageToDesktopWallpaper(filePath2);
-            // generate_speech(gptResponse.description, "onyx");
-            // await keyboardAction.goToMeme(downloadDir);
-            // await modify_image(gptResponse.imagePrompt, gptResponse.title);
+            await modify_image(gptResponse.imagePrompt, gptResponse.fileName);
+            filePath = path.join(downloadDir, gptResponse.fileName);
+            await keyboardAction.goToMovie(filePath, gptResponse.songName);
             break;
         case "keynote":
             generate_speech(gptResponse.description, "onyx");

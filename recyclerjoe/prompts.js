@@ -84,19 +84,19 @@ const fromText = [
 ];
 
 const fromImage = [
-    `to turn the image into a beautiful desktop wallpaper:
+    `to turn the image into a beautiful desktop wallpaper prompt for DALL-E to generate a wallpaper based on the image:
     {
         "purpose": "wallpaper",
-        "description": "describe why it's important to turn the image into a wallpaper",
-        "filename": "name of the image file",
-        "prompt": "describe the wallpaper you want to create",
+        "description": "describe why you think it was a waste to throw away the image",
+        "fileName": "a creative file name for the wallpaper without the extension",
+        "imagePrompt": "describe the image you are presented with and modifiy the description in order to make a beautiful wallpaper prompt for DALL-E",
     }`,
-    `to turn the images into a descriptive prompt for DALL-E to generate a meme:
+    `to turn the images into a descriptive prompt for DALL-E to generate a pixar style movie poster, with a title and description:
     {
-        "purpose": "meme",
-        "description": "describe why it's important to turn the image into a meme",
-        "title": "title of the meme",
-        "filename": "name of the image file",
-        "imagePrompt": "describe the image you are presented with and add a caption with text on the top and bottom to create a meme that is funny and self-deprecating",
+        "purpose": "movie",
+        "description": "describe the scenario of the movie and how it relates to the image, the era and the genre",
+        "fileName": "a creative file name for the movie poster without the extension",
+        "songName": "suggest a known song that could be used in the movie and that fits the theme, make the song exists.",
+        "imagePrompt": "describe the image you are presented with, and add instruction for where to place the text to create a pixar style movie poster",
     }`,
 ];

@@ -28,9 +28,15 @@ export async function imageToDesktopWallpaper(filePath) {
         await keyboard.type(filePath);
         await sleep(300);
         await keyboard.type(Key.Enter);
-        await sleep(100);
+        await sleep(500);
         await keyboard.type(Key.LeftControl, Key.LeftAlt, Key.LeftSuper, Key.T);
+        await sleep(200);
+        await 
     }
+}
+
+async function minimizeAllWindows() {
+    const activeWindow = await getActiveWindow();
 }
 
 export async function openApp(appName) {
@@ -143,26 +149,23 @@ export async function makePresentation(presentation) {
     await keyboard.type(Key.Left);
 }
 
-export async function goToMeme(path) {
+export async function goToMovie(filePath, songName) {
     await openFinder();
     await sleep(200);
     await keyboard.type(Key.LeftSuper, Key.LeftShift, Key.G);
     await sleep(200);
-    await keyboard.type(path);
-    await sleep(100);
+    await keyboard.type(filePath);
+    await sleep(200);
     await keyboard.type(Key.Enter);
-    await sleep(100);
-    await keyboard.type(Key.Right);
-    await sleep(100);
+    await sleep(500);
+    await keyboard.type(Key.LeftSuper, Key.O);
+    await sleep(500);
+    await playSongOnSpotify(songName);
+    await sleep(500);
+    await keyboard.type(Key.LeftSuper, Key.Tab);
+    await sleep(500);
+    await keyboard.type(Key.Fn, Key.F);
 
-    for (let i = 0; i < 10; i++) {
-        if (Math.random() > 0.5) {
-            await keyboard.type(Key.Up);
-        } else {
-            await keyboard.type(Key.Down);
-        }
-        await sleep(200);
-    }
 }
 
 export async function playSongOnSpotify(songName) {
