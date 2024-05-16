@@ -168,6 +168,7 @@ export async function goToMovie(filePath, songName) {
         await sleep(100);
         console.log("waiting for file to be copied");
     }
+    await sleep(200);
     await keyboard.type(Key.Enter);
     await sleep(500);
     await keyboard.type(Key.LeftSuper, Key.O);
