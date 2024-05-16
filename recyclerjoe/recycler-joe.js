@@ -1,12 +1,10 @@
 import { image_to_base64, sleep, generate_speech, setPuppeteer, openai } from "../utils.js";
 import { mouse, left, right, up, down, keyboard, Key, Window } from "@nut-tree-fork/nut-js";
-import pkg from "terminal-kit";
 import { openFinder, searchTrashInFinder, writeNote, imageToDesktopWallpaper, makePresentation, goToMeme } from "./keyboardFunctions.js";
 import { modify_image } from "./imageTransforms.js";
 import {downloadDir, readFiles, trashDir} from "./fileReading.js";
 import { switchCase, parseAnswerForJoe } from "./joeCases.js";
 import * as prompt from "./prompts.js";
-const { terminal: term } = pkg;
 import path from "path";
 import fs from "fs";
 import chokidar from 'chokidar';
