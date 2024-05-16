@@ -25,7 +25,7 @@ export function getRandomPrompt(fileName) {
                 
                 JSON format:"
                 ${fromText[3]}
-                `,
+           `,
         };
     }
 }
@@ -70,8 +70,9 @@ const fromText = [
         "slide2_title": "title of the second slide",
         "slide2_subtitle": "subtitle of the second slide",
         "slide2_bullets": ["bullet point 1", "bullet point 2", "bullet point 3],
+        "songName": "suggest a known song that could be used in the keynote and that fits the theme, make sure the song exists., format: 'Artist - Song Name',
     }`,
-    `to turn the text into a absurd reminders that are both funny and maybe useful:
+    `to turn the text into a absurd reminders that are both funny and maybe useful, the max number of points is 3:
     {
         "purpose": "reminder",
         "description": "describe why it might be important to turn the text into a reminder",

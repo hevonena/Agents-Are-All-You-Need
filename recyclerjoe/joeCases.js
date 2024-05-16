@@ -27,6 +27,7 @@ export async function parseAnswerForJoe(json_answer) {
         slide2_title: json_answer["slide2_title"],
         slide2_subtitle: json_answer["slide2_subtitle"],
         slide2_bullets: json_answer["slide2_bullets"],
+        songName: json_answer["songName"],
     };
 
     return { gptResponse, gptPresentation };
@@ -48,7 +49,7 @@ export async function switchCase(parsedAnswerForJoe) {
             break;
         case "reminder":
             generate_speech(gptResponse.description, "onyx");
-            await makeReminder(gptResponse.title, gptResponse.points);
+            await keyboardAction.makeReminder(gptResponse.title, gptResponse.points);
             break;
         case "movie":
             generate_speech(gptResponse.description, "onyx");

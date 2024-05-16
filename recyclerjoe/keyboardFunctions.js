@@ -78,6 +78,7 @@ export async function writeNote(note) {
 }
 
 export async function makePresentation(presentation) {
+    await playSongOnSpotify(presentation.songName);
     await keyboard.type(Key.LeftSuper, Key.Space);
     await keyboard.type("keynote");
     await sleep(100);
@@ -188,7 +189,7 @@ export async function goToMovie(filePath, songName) {
 export async function playSongOnSpotify(songName) {
     await openApp("spotify");
     while (!(await checkifWindowIsOpen("Spotify"))) {}
-    await sleep(1500);
+    await sleep(2000);
     await keyboard.type(Key.LeftSuper, Key.L);
     await sleep(100);
     await keyboard.type(songName);
@@ -251,20 +252,22 @@ export async function makeReminder(title, points) {
     while (!await checkifWindowIsOpen("Reminders")) {}
     await sleep(300);
     
-    // new list
+    //new reminder list
     await keyboard.type(Key.LeftShift, Key.LeftSuper, Key.N);
+    await sleep(300);
 
     //type list name
     await keyboard.type(title);
-    await sleep(100);
+    await sleep(200);
     await keyboard.type(Key.Enter);
+    await sleep(300);
 
     // add reminders
     for (const point of points) {
         await keyboard.type(Key.Enter);
-        await sleep(100);
+        await sleep(300);
         await keyboard.type(Key.LeftSuper, Key.N);
-        await sleep(100);
+        await sleep(300);
         await keyboard.type(point);
     }
 
