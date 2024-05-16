@@ -41,9 +41,10 @@ export async function switchCase(parsedAnswerForJoe) {
     switch (gptResponse.purpose) {
         case "wallpaper":
             generate_speech(gptResponse.description, "onyx");
-            await modify_image(gptResponse.imagePrompt, gptResponse.fileName);
+            await modify_image(gptResponse.imagePrompt, gptResponse.fileName, "landscape");
             filePath = path.join(downloadDir, gptResponse.fileName);
             await keyboardAction.imageToDesktopWallpaper(filePath);
+            generate_speech("Yo brooooo do you like this new desktop wallpaper ? I tried to keep some of the original elements, let me know what you think...", "onyx")
             break;
         case "reminder":
             generate_speech(gptResponse.description, "onyx");
@@ -51,7 +52,7 @@ export async function switchCase(parsedAnswerForJoe) {
             break;
         case "movie":
             generate_speech(gptResponse.description, "onyx");
-            await modify_image(gptResponse.imagePrompt, gptResponse.fileName);
+            await modify_image(gptResponse.imagePrompt, gptResponse.fileName, "portrait");
             filePath = path.join(downloadDir, gptResponse.fileName);
             await keyboardAction.goToMovie(filePath, gptResponse.songName);
             break;

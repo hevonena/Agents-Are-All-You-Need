@@ -24,18 +24,16 @@ export async function imageToDesktopWallpaper(filePath) {
     if (filePath !== undefined) {
         await openFinder();
         await keyboard.type(Key.LeftSuper, Key.LeftShift, Key.G);
-        await sleep(300);
+        await sleep(500);
         await keyboard.type(filePath);
-        await sleep(300);
+        await sleep(1000);
         await keyboard.type(Key.Enter);
         await sleep(500);
         await keyboard.type(Key.LeftControl, Key.LeftAlt, Key.LeftSuper, Key.T);
-        await sleep(200);
-    }
-}
+        await sleep(500);
+        await keyboard.type(Key.Fn, Key.F11);
 
-async function minimizeAllWindows() {
-    const activeWindow = await getActiveWindow();
+    }
 }
 
 export async function openApp(appName) {
