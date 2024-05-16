@@ -1,6 +1,7 @@
-import { mouse, left, right, up, down, keyboard, Key, Window, getActiveWindow } from "@nut-tree-fork/nut-js";
+import { mouse, left, right, up, down, keyboard, Key, Window, getActiveWindow, clipboard } from "@nut-tree-fork/nut-js";
 import { image_to_base64, sleep, generate_speech, setPuppeteer, openai } from "../utils.js";
 import path from "path";
+import fs from "fs";
 import { homeDir, trashDir } from "./fileReading.js";
 
 keyboard.config.autoDelayMs = 100;
@@ -21,18 +22,21 @@ export async function searchTrashInFinder() {
 }
 
 export async function imageToDesktopWallpaper(filePath) {
-    if (filePath !== undefined) {
-        await openFinder();
-        await keyboard.type(Key.LeftSuper, Key.LeftShift, Key.G);
-        await sleep(500);
-        await keyboard.type(filePath);
-        await sleep(1000);
-        await keyboard.type(Key.Enter);
-        await sleep(500);
-        await keyboard.type(Key.LeftControl, Key.LeftAlt, Key.LeftSuper, Key.T);
-        await sleep(500);
-        await keyboard.type(Key.Fn, Key.F11);
+    await openFinder();
+    await keyboard.type(Key.LeftSuper, Key.LeftShift, Key.G);
+    await sleep(500);
+    await keyboard.type(filePath);
+    await sleep(1000);
+    while (!(fs.existsSync(filePath + ".png"))) {
+        await sleep(100);
+        console.log("waiting for file to be copied");
     }
+    await sleep(200);
+    await keyboard.type(Key.Enter);
+    await sleep(500);
+    await keyboard.type(Key.LeftControl, Key.LeftAlt, Key.LeftSuper, Key.T);
+    await sleep(500);
+    await keyboard.type(Key.Fn, Key.F11);
 }
 
 export async function openApp(appName) {
@@ -167,7 +171,7 @@ export async function goToMovie(filePath, songName) {
 export async function playSongOnSpotify(songName) {
     await openApp("spotify");
     while (!(await checkifWindowIsOpen("Spotify Premium"))) {}
-    await sleep(1000);
+    await sleep(1500);
     await keyboard.type(Key.LeftSuper, Key.L);
     await sleep(100);
     await keyboard.type(songName);
