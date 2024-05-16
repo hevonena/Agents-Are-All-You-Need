@@ -22,9 +22,9 @@ async function readTrashFiles(filePath) {
         fs.readFile(filePath, async () => {
 
             var regex = /(?:\.([^.]+))?$/;
-            var fileExtension = regex.exec(filePath);
+            var fileExtension = regex.exec(filePath)[1].toLowerCase();
 
-            if (fileExtension[1] == 'jpeg' || fileExtension[1] == 'png' || fileExtension[1] == 'jpg') {
+            if (fileExtension == 'jpeg' || fileExtension == 'png' || fileExtension == 'jpg') {
                 try {
                     const base64Image = await image_to_base64(filePath);
                     fileContent.push({
@@ -36,7 +36,7 @@ async function readTrashFiles(filePath) {
                 } catch (error) {
                     console.error(`Error converting image to base64:`, error);
                 }
-            } else if (fileExtension[1] == 'txt' || fileExtension[1] == 'js' || fileExtension[1] == 'html' || fileExtension[1] == 'css') {
+            } else if (fileExtension == 'txt' || fileExtension == 'js' || fileExtension == 'html' || fileExtension == 'css') {
                 fileContent.push({
                     type: "text",
                     text: fs.readFileSync(filePath, "utf8"),

@@ -10,7 +10,7 @@ export function getRandomBasePrompt(fileName) {
                 All options are good options, don't be afraid to try new things and switch your rhythm! 
                 
                 JSON format:"
-                ${fromImage[1]}
+                ${fromImage[0]}
                 `,
         };
     } else {
