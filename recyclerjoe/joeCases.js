@@ -1,7 +1,7 @@
 import { generate_speech } from "../utils.js";
 import { modify_image } from "./imageTransforms.js";
 import * as keyboardAction from "./keyboardFunctions.js";
-import { trashDir } from "./fileReading.js";
+import { trashDir, downloadDir } from "./fileReading.js";
 import path from "path";
 
 export async function parseAnswerForJoe(json_answer) {
