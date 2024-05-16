@@ -12,6 +12,7 @@ export async function parseAnswerForJoe(json_answer) {
         title: json_answer["title"],
         content: json_answer["content"],
         imagePrompt: json_answer["imagePrompt"],
+        codePoetry: json_answer["codePoetry"],
     };
 
     const gptPresentation = {
@@ -56,6 +57,7 @@ export async function switchCase(parsedAnswerForJoe) {
             generate_speech(gptResponse.content, "onyx");
             break;
         case "code poetry":
+            keyboardAction.makeCodePoetry(gptResponse.codePoetry)
             break;
         case "algorithmic art":
             break;

@@ -206,19 +206,32 @@ export async function checkifWindowIsOpen(windowName) {
     }
 }
 
-export async function makeCodePoetry() {
+export async function makeCodePoetry(codePoetry) {
     await openApp("vscode");
     await sleep(100);
-    while (!await checkifWindowIsOpen("vscode")) {}
+    while (!await checkifWindowIsOpen("Welcome")) {}
 
     //new window
     await keyboard.type(Key.LeftSuper, Key.LeftShift, Key.N);
     await sleep(100);
 
-    // new file
-    await keyboard.type(Key.LeftControl, Key.LeftAlt, Key.LeftSuper, Key.N);
+    // new text file
+    await keyboard.type(Key.LeftControl, Key.N);
     await sleep(100);
 
-    
-
+    // type code poetry
+    await keyboard.type(codePoetry);
 }
+
+
+
+
+// async function windowName () {
+//     const activeWindow = await getActiveWindow();
+//     const windowTitle =  await activeWindow.getTitle();
+//     return windowTitle;
+// }
+
+// setInterval((async () => {
+//     console.log(await windowName());
+// }), 100);
