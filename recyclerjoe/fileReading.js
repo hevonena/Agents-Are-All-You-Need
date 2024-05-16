@@ -6,10 +6,11 @@ import { image_to_base64 } from "../utils.js";
 export const homeDir = os.homedir();
 export const downloadDir = path.join(homeDir, "tempDownloads/");
 export const trashDir = path.join(homeDir, ".Trash/");
-const fileContent = [];
 let fileName = "";
+let fileContent = [];
 
 export async function readFiles() {
+    fileContent = [];
     await readTrashFiles();
     return {fileContent, fileName};
 }
