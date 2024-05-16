@@ -7,10 +7,11 @@ export const homeDir = os.homedir();
 export const downloadDir = path.join(homeDir, "tempDownloads/");
 export const trashDir = path.join(homeDir, ".Trash/");
 const fileContent = [];
+let fileName = "";
 
 export async function readFiles() {
     await readTrashFiles();
-    return fileContent;
+    return {fileContent, fileName};
 }
 
 
@@ -35,7 +36,6 @@ async function readTrashFiles() {
 
         const sortedImageFiles = imageFilesWithStats.sort((a, b) => b.mtime - a.mtime);
         sortedImageFiles.reverse();
-        console.log("sortedImageFiles", sortedImageFiles);
         let n = 1;
         const lastNImages = sortedImageFiles.slice(0, n).map((fileInfo) => fileInfo.file);
 
@@ -67,6 +67,13 @@ async function readTrashFiles() {
             type: "text",
             text: text,
         });
+
+        // if image store filename of image
+        if (lastNImages.length > 0) {
+            fileName = lastNImages[0];
+        } else {
+            fileName = "";
+        }
 
         resolve();
 

@@ -25,11 +25,11 @@ startTerminal();
 const messages = [prompt.baseSystemPrompt];
 
 async function myNodeFunction() {
-    // ghost(); // go to trash and "read" files
 
     // -------- FILE READING --------
-    let fileContent = await readFiles();
-    // our files
+    let fileContent = await readFiles().fileContent;
+    let fileName = await readFiles().fileName;
+
     messages.push({
         role: "user",
         content: fileContent,
@@ -46,27 +46,5 @@ async function myNodeFunction() {
     const message_text = message.content;
     const json_answer = JSON.parse(message_text);
 
-    // await modify_image(imagePrompt);
-    // await makePresentation(presentation)
     switchCase(await parseAnswerForJoe(json_answer));
 };
-
-async function ghost() {
-    await openFinder();
-
-    await sleep(200);
-
-    await searchTrashInFinder();
-
-    await sleep(200);
-
-    await keyboard.type(Key.LeftSuper, Key.A);
-
-    // await Promise.all([
-    //     term.slowTyping(description + "\n", {
-    //         flashStyle: term.brightWhite,
-    //         delay: 40,
-    //     }),
-    //     generate_speech(description, "onyx"),
-    // ]);
-}
