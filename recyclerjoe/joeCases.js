@@ -45,8 +45,11 @@ export async function switchCase(parsedAnswerForJoe) {
             break;
         case "meme":
             generate_speech(gptResponse.description, "onyx");
-            await keyboardAction.goToMeme(downloadDir);
-            await modify_image(gptResponse.imagePrompt, gptResponse.title);
+            const filePath2 = path.join(trashDir, gptResponse.filename);
+            await keyboardAction.imageToDesktopWallpaper(filePath2);
+            // generate_speech(gptResponse.description, "onyx");
+            // await keyboardAction.goToMeme(downloadDir);
+            // await modify_image(gptResponse.imagePrompt, gptResponse.title);
             break;
         case "keynote":
             generate_speech(gptResponse.description, "onyx");

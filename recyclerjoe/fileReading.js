@@ -34,7 +34,9 @@ async function readTrashFiles() {
         }));
 
         const sortedImageFiles = imageFilesWithStats.sort((a, b) => b.mtime - a.mtime);
-        let n = 3;
+        sortedImageFiles.reverse();
+        console.log("sortedImageFiles", sortedImageFiles);
+        let n = 1;
         const lastNImages = sortedImageFiles.slice(0, n).map((fileInfo) => fileInfo.file);
 
         for (const imageFile of lastNImages) {
