@@ -154,3 +154,15 @@ export async function checkIfKeynoteIsOpen() {
         return false;
     }
 }
+
+export async function checkifWindowIsOpen(windowName) {
+    const activeWindow = await getActiveWindow();
+    const windowTitle =  await activeWindow.getTitle();
+    if (windowTitle === windowName) {
+        sleep(100);
+        return true;
+    } else {
+        sleep(100);
+        return false;
+    }
+}
