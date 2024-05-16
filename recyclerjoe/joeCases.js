@@ -72,10 +72,7 @@ export async function switchCase(parsedAnswerForJoe) {
             generate_speech(gptResponse.description, "onyx");
             await modify_image(gptResponse.imagePrompt, gptResponse.fileName, "portrait");
             filePath = path.join(downloadDir, gptResponse.fileName);
-            await keyboardAction.writeNote({
-                title: gptResponse.title,
-                content: gptResponse.content,
-            });
+            await keyboardAction.writeRecipe(gptResponse.title, gptResponse.content);
             await keyboardAction.pasteRecipeImageInNotes(filePath);
             break;
         case "poem":

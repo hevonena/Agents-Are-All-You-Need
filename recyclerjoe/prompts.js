@@ -10,7 +10,7 @@ export function getRandomBasePrompt(fileName) {
                 All options are good options, don't be afraid to try new things and switch your rhythm! 
                 
                 JSON format:"
-                ${fromImage[0]}
+                ${fromImage[1]}
                 `,
         };
     } else {
@@ -24,7 +24,7 @@ export function getRandomBasePrompt(fileName) {
                 All options are good options, don't be afraid to try new things and switch your rhythm! 
                 
                 JSON format:"
-                ${fromText[1]}
+                ${fromText[2]}
            `,
         };
     }
@@ -46,9 +46,9 @@ const fromText = [
     `to turn the text into a recipe or any other creative text-based format:
     {
         "purpose": "recipe",
-        "description": "describe why it's important to turn the text into a food recipe",
+        "description": "describe how the text inspired you to create a recipe based on it and what went into creating this blend of concepts and flavors",
         "title": "title of the dish",
-        "content": "a recipe based on the text that mentions ingredients and steps to prepare the dish",
+        "content": "a recipe based on the text that mentions ingredients and steps to prepare the dish. Be concise (absurd if need be) and don't add text formatting",
         "imagePrompt": "describe the dish in exquisite detail, make sure to include the main ingredients and the final presentation",
         "fileName": "a creative file name for the recipe image without the extension",
     }`,

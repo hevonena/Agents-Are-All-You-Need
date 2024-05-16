@@ -77,6 +77,24 @@ export async function writeNote(note) {
 
 }
 
+export async function writeRecipe(title, content) {
+    await keyboard.type(Key.Fn, Key.Q);
+    await sleep(1000);
+    
+    await keyboard.type(title);
+    await sleep(300);
+    await keyboard.type(Key.Enter);
+    await sleep(100);
+
+    clipboard.setContent(content);
+    await sleep(500);
+    await keyboard.type(Key.LeftSuper, Key.V);
+
+    // select all
+    await keyboard.type(Key.LeftSuper, Key.A);
+    await sleep(400);
+}
+
 export async function makePresentation(presentation) {
     await playSongOnSpotify(presentation.songName);
     await keyboard.type(Key.LeftSuper, Key.Space);
@@ -91,6 +109,8 @@ export async function makePresentation(presentation) {
     await sleep(100);
     await keyboard.type(Key.Enter);
     await sleep(200);
+
+    keyboard.config.autoDelayMs = 30;
 
     // first slide
     await keyboard.type(Key.Tab);
@@ -154,6 +174,7 @@ export async function makePresentation(presentation) {
         await keyboard.type(Key.Enter);
         await keyboard.type(point);
       }
+    keyboard.config.autoDelayMs = 100;
     await sleep(100);
 
     // present
