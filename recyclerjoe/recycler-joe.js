@@ -22,15 +22,16 @@ watcher.on('add', (filePath) => {
 
 startTerminal();
 
-const messages = [prompt.baseSystemPrompt];
-
 async function myNodeFunction() {
 
     // -------- FILE READING --------
     let fileContent = await readFiles().fileContent;
     let fileName = await readFiles().fileName;
 
-    messages.push({
+    const gptChatHistory = [];
+    gptChatHistory.push(prompt.getRandomPrompt(fileName));
+
+    gptChatHistory.push({
         role: "user",
         content: fileContent,
     });
@@ -39,7 +40,7 @@ async function myNodeFunction() {
         model: "gpt-4o",
         max_tokens: 1024,
         response_format: { type: "json_object" },
-        messages: messages,
+        messages: gptChatHistory,
     });
 
     const message = response.choices[0].message;
