@@ -12,22 +12,14 @@ import fs from "fs";
 import chokidar from 'chokidar';
 
 // -------- TRASH WATCHER --------
-const getTrashFiles = () => {
-    return new Set(fs.readdirSync(trashDir).map(file => path.join(trashDir, file)));
-};
-
-let trashFiles = getTrashFiles();
-const watcher = chokidar.watch(trashDir, { persistent: true });
+const watcher = chokidar.watch(trashDir, { persistent: true, ignoreInitial: true});
 
 // Event listeners
 watcher.on('add', (filePath) => {
-    if (!trashFiles.has(filePath)) {
         console.log(`New file added to trash: ${filePath}`);
         myNodeFunction(filePath);
     }
-    // Update the set of trash files
-    trashFiles.add(filePath);
-});
+);
 
 const messages = [prompt.baseSystemPrompt];
 

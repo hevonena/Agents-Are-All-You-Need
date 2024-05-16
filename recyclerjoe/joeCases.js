@@ -53,7 +53,7 @@ export async function switchCase(parsedAnswerForJoe) {
             await keyboardAction.makePresentation(gptPresentation);
             break;
         case "poetic reading":
-            await generate_speech(gptResponse.title, "onyx");
+            await generate_speech(gptResponse.description, "onyx");
             generate_speech(gptResponse.content, "onyx");
             break;
         case "code poetry":
