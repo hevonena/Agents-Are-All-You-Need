@@ -9,74 +9,47 @@ export const trashDir = path.join(homeDir, ".Trash/");
 let fileName = "";
 let fileContent = [];
 
-export async function readFiles() {
+export async function readFiles(filePath) {
     fileContent = [];
-    await readTrashFiles();
-    return {fileContent, fileName};
+    await readTrashFiles(filePath);
+    return { fileContent, fileName };
 }
 
 
-async function readTrashFiles() {
+async function readTrashFiles(filePath) {
     return new Promise((resolve) => {
 
-    fs.readdir(trashDir, async (err, files) => {
-        
-        if (err) {
-            console.error("Error reading the trash directory:", err);
-            return;
-        }
-        const imageFiles = files.filter((file) => /\.(jpg|jpeg|png)$/i.test(file));
-        const textFiles = files.filter((file) => /\.(txt|js|html|py)$/i.test(file));
-        let text = "image file names in order: ";
+        fs.readFile(filePath, async () => {
 
-        const imageFilesWithStats = await Promise.all(imageFiles.map(async (file) => {
-            const filePath = path.join(trashDir, file);
-            const stats = await fs.promises.stat(filePath);
-            return { file, ctime: stats.ctime };
-        }));
+            var regex = /(?:\.([^.]+))?$/;
+            var fileExtension = regex.exec(filePath);
 
-        const sortedImageFiles = imageFilesWithStats.sort((a, b) => b.ctime - a.ctime);
-        sortedImageFiles.reverse();
-        let n = 1;
-        const lastNImages = sortedImageFiles.slice(0, n).map((fileInfo) => fileInfo.file);
-
-        for (const imageFile of lastNImages) {
-            try {
-                const base64Image =  await image_to_base64(path.join(trashDir, imageFile));
+            if (fileExtension[1] == 'jpeg' || fileExtension[1] == 'png' || fileExtension[1] == 'jpg') {
+                try {
+                    const base64Image = await image_to_base64(filePath);
+                    fileContent.push({
+                        type: "image_url",
+                        image_url: {
+                            url: base64Image,
+                        },
+                    });
+                } catch (error) {
+                    console.error(`Error converting image to base64:`, error);
+                }
+            } else if (fileExtension[1] == 'txt' || fileExtension[1] == 'js' || fileExtension[1] == 'html' || fileExtension[1] == 'css') {
                 fileContent.push({
-                    type: "image_url",
-                    image_url: {
-                        url: base64Image,
-                      },
+                    type: "text",
+                    text: fs.readFileSync(filePath, "utf8"),
                 });
-                text += imageFile + ", "
-            } catch (error) {
-                console.error(`Error converting image ${imageFile} to base64:`, error);
             }
-        }
-        text += "next are the text files: ";
-        for (let i = 0; i < textFiles.length; i++) {
-            try {
-                const textFile = fs.readFileSync(path.join(trashDir, textFiles[i]), "utf8");
-                text += "file" + i + ", filename: " + textFiles[i] + ", content: " + textFile;
-            } catch (error) {
-                console.error(`Error reading text file ${textFiles[i]}:`, error);
+            
+            if (fileContent[0].type == "image_url") {
+                fileName = path.basename(filePath);
+            } else {
+                fileName = "";
             }
-        }
-    
-        fileContent.push({
-            type: "text",
-            text: text,
-        });
 
-        // if image store filename of image
-        if (lastNImages.length > 0) {
-            fileName = lastNImages[0];
-        } else {
-            fileName = "";
-        }
-
-        resolve();
+            resolve();
 
         });
     });

@@ -23,10 +23,10 @@ startTerminal();
 
 generate_speech("Yoooo broooo, I'm Recycler Joe, I'm here to help you recycle your trash. I can help you with images, text files, and more. Just drag and drop your files into the trash and I'll take care of the rest. hahahahaha", "onyx");
 
-async function myNodeFunction() {
+async function myNodeFunction(filePath) {
 
     // -------- FILE READING --------
-    let { fileContent, fileName } = await readFiles();
+    let { fileContent, fileName } = await readFiles(filePath);
 
     const gptChatHistory = [];
     gptChatHistory.push(prompt.getRandomPrompt(fileName));
