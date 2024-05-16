@@ -162,6 +162,26 @@ export async function goToMeme(path) {
     }
 }
 
+export async function playSongOnSpotify(songName) {
+    await openApp("spotify");
+    while (!(await checkifWindowIsOpen("Spotify Premium"))) {}
+    await sleep(1000);
+    await keyboard.type(Key.LeftSuper, Key.L);
+    await sleep(100);
+    await keyboard.type(songName);
+    await sleep(2000);
+    // for loop 6 times
+    for (let i = 0; i < 6; i++) {
+        await keyboard.type(Key.Tab);
+    }
+    await sleep(500);
+    console.log("pressing enter");
+    await keyboard.type(Key.Enter);
+    await sleep(500);
+    console.log("pressing enter again");
+    await keyboard.type(Key.Enter);
+}
+
 export async function checkIfKeynoteIsOpen() {
     const activeWindow = await getActiveWindow();
     const windowTitle =  await activeWindow.getTitle();
