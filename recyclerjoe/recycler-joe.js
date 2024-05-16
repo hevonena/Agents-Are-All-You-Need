@@ -1,5 +1,6 @@
 import { openai, generate_speech } from "../utils.js";
 import { readFiles, trashDir } from "./fileReading.js";
+import { greetings } from "./greetings.js";
 import { switchCase, parseAnswerForJoe } from "./joeCases.js";
 import * as prompt from "./prompts.js";
 import { startTerminal } from "./terminalStyles.js";
@@ -21,7 +22,7 @@ watcher.on('add', (filePath) => {
 
 startTerminal();
 
-generate_speech("Yoooo broooo, I'm Recycler Joe, I'm here to help you recycle your trash. I can help you with images, text files, and more. Just drag and drop your files into the trash and I'll take care of the rest. hahahahaha", "onyx");
+generate_speech("Yoooo broooo, I'm Recycler Joe, I'm here to help you recycle your trash. Just drag and drop your files into the trash and I'll take care of the rest. hahahahaha", "onyx");
 
 async function myNodeFunction(filePath) {
 
@@ -29,7 +30,9 @@ async function myNodeFunction(filePath) {
     let { fileContent, fileName } = await readFiles(filePath);
 
     const gptChatHistory = [];
-    gptChatHistory.push(prompt.getRandomPrompt(fileName));
+    gptChatHistory.push(prompt.getRandomBasePrompt(fileName));
+
+    greetings(gptChatHistory[0].content);
 
     gptChatHistory.push({
         role: "user",

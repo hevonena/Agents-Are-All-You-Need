@@ -85,7 +85,7 @@ export async function switchCase(parsedAnswerForJoe) {
             });
             break;
         case "poem":
-            generate_speech(gptResponse.description, "onyx");
+            // generate_speech(gptResponse.description, "onyx");
             await keyboardAction.writeNote({
                 title: gptResponse.title,
                 content: gptResponse.content,

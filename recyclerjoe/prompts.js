@@ -1,4 +1,4 @@
-export function getRandomPrompt(fileName) {
+export function getRandomBasePrompt(fileName) {
     if (fileName) {
         return {
             role: "system",
@@ -49,13 +49,6 @@ const fromText = [
         "description": "describe why it's important to turn the text into a recipe",
         "title": "title of recipe",
         "content": "a recipe based on the text",
-    }`,
-    `to turn the text into a horoscope or any other creative text-based format:
-    {
-        "purpose": "horoscope",
-        "description": "describe why it's important to turn the text into a horoscope",
-        "title": "title of horoscope",
-        "content": "a horoscope based on the text",
     }`,
     `to use the text and make an enticing keynote presentation that captures the essence of the text:
     {
