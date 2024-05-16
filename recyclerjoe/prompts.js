@@ -106,7 +106,7 @@ const fromImage = [
         "purpose": "movie",
         "description": "describe the scenario of the movie and how it relates to the image, the era and the genre",
         "fileName": "a creative file name for the movie poster without the extension",
-        "songName": "suggest a known song that could be used in the movie and that fits the theme, make the song exists.",
+        "songName": "suggest a known song that could be used in the movie and that fits the theme, make sure the song exists., format: 'Artist - Song Name',
         "imagePrompt": "describe the image you are presented with, and add instruction for where to place the text to create a pixar style movie poster",
     }`,
 ];
