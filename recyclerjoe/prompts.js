@@ -10,7 +10,7 @@ export function getRandomBasePrompt(fileName) {
                 All options are good options, don't be afraid to try new things and switch your rhythm! 
                 
                 JSON format:"
-                ${fromImage[1]}
+                ${getRandomJSON(fromImage)}
                 `,
         };
     } else {
@@ -24,7 +24,7 @@ export function getRandomBasePrompt(fileName) {
                 All options are good options, don't be afraid to try new things and switch your rhythm! 
                 
                 JSON format:"
-                ${fromText[2]}
+                ${getRandomJSON(fromText)}
            `,
         };
     }
@@ -48,7 +48,7 @@ const fromText = [
         "purpose": "recipe",
         "description": "describe how the text inspired you to create a recipe based on it and what went into creating this blend of concepts and flavors",
         "title": "title of the dish",
-        "content": "a recipe based on the text that mentions ingredients and steps to prepare the dish. Be concise (absurd if need be) and don't add text formatting",
+        "content": "a recipe based on the text that mentions ingredients and steps to prepare the dish. Be concise (absurd if need be) and don't add text formatting except for line breaks.",
         "imagePrompt": "describe the dish in exquisite detail, make sure to include the main ingredients and the final presentation",
         "fileName": "a creative file name for the recipe image without the extension",
     }`,
