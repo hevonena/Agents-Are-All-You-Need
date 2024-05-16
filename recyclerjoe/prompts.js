@@ -67,6 +67,7 @@ export const baseSystemPrompt = {
 };
 
 export function getRandomPrompt() {
+
 }
 
 
@@ -92,10 +93,49 @@ const fromText = {
         "title": "title of <purpose>",
         "content": "a horoscope based on the text",
     }`,
-    poeticReading: `to turn the files into code poetry that is both beautiful and oriented object:
+    codePoetry: `to turn the files into code poetry that is both beautiful and oriented object:
     {
         "purpose": "code poetry",
         "description": "describe why it's important to turn the files into code poetry",
         "codePoetry": "the code poetry itself, be expressive and programmatic",
+    }`,
+    poeticReading: `to create a poetic reading which plunges the reader into the text:
+    {
+        "purpose": "poetic reading",
+        "description": "describe why it's important to turn the text into a poetic reading",
+        "title": "title of the poetic reading",
+        "content": "content of the poetic reading",
+    }`,
+    keynote: `to use the text and make an enticing keynote presentation that captures the essence of the text:
+    {
+        "purpose": "keynote",
+        "description": "describe why it's important to turn the text into a keynote presentation",
+        "title": "title of the keynote",
+        "subtitle": "subtitle of the keynote",
+        "author": "author of the keynote",
+        "slide1_title": "title of the first slide",
+        "slide1_subtitle": "subtitle of the first slide",
+        "slide1_bullets": ["bullet point 1", "bullet point 2", "bullet point 3],
+        "slide2_title": "title of the second slide",
+        "slide2_subtitle": "subtitle of the second slide",
+        "slide2_bullets": ["bullet point 1", "bullet point 2", "bullet point 3],
+    }`,
+}
+
+const fromImage = {
+    wallpaper: `to turn the image into a beautiful desktop wallpaper:
+    {
+        "purpose": "wallpaper",
+        "description": "describe why it's important to turn the image into a wallpaper",
+        "filename": "name of the image file",
+        "prompt": "describe the wallpaper you want to create",
+    }`,
+    meme: `to turn the images into a descriptive prompt for DALL-E to generate a meme:
+    {
+        "purpose": "meme",
+        "description": "describe why it's important to turn the image into a meme",
+        "title": "title of the meme",
+        "filename": "name of the image file",
+        "imagePrompt": "describe the image you are presented with and add a caption with text on the top and bottom to create a meme that is funny and self-deprecating",
     }`,
 }
