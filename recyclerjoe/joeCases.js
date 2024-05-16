@@ -1,6 +1,6 @@
-import { generate_speech } from "../utils";
-import { modify_image } from "./imageTransforms";
-import * as keyboardAction from "./keyboardFunctions";
+import { generate_speech } from "../utils.js";
+import { modify_image } from "./imageTransforms.js";
+import * as keyboardAction from "./keyboardFunctions.js";
 
 export async function parseAnswerForJoe(json_answer) {
     const gptResponse = {
