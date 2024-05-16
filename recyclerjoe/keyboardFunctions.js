@@ -22,8 +22,8 @@ export async function searchTrashInFinder() {
 
 export async function imageToDesktopWallpaper(filePath) {
     if (filePath !== undefined) {
-        await keyboard.type(Key.LeftSuper, Key.Space);
-        await sleep(100);
+        await openFinder();
+        await keyboard.type(Key.LeftSuper, Key.LeftShift, Key.G);
         await keyboard.type(filePath);
         await sleep(300);
         await keyboard.type(Key.Enter);
@@ -32,7 +32,13 @@ export async function imageToDesktopWallpaper(filePath) {
     }
 }
 
-export async function modifyTrashedImage() {}
+export async function openApp(appName) {
+    await keyboard.type(Key.LeftSuper, Key.Space);
+    await keyboard.type(appName);
+    await sleep(100);
+    await keyboard.type(Key.Enter);
+    await sleep(100);
+}
 
 export async function writeNote(note) {
     await keyboard.type(Key.LeftSuper, Key.Space);
@@ -56,7 +62,9 @@ export async function makePresentation(presentation) {
     await keyboard.type("keynote");
     await sleep(100);
     await keyboard.type(Key.Enter);
-    await sleep(3500);
+    while (!await checkIfKeynoteIsOpen()) {
+        // await sleep(100);
+    }
 
     await keyboard.type(Key.LeftSuper, Key.N);
     await sleep(100);
