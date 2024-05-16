@@ -1,4 +1,4 @@
-import { mouse, left, right, up, down, keyboard, Key, Window } from "@nut-tree-fork/nut-js";
+import { mouse, left, right, up, down, keyboard, Key, Window, getActiveWindow } from "@nut-tree-fork/nut-js";
 import { image_to_base64, sleep, generate_speech, setPuppeteer, openai } from "../utils.js";
 import path from "path";
 import { homeDir, trashDir } from "./fileReading.js";
@@ -141,4 +141,16 @@ export async function goToMeme(path) {
     await keyboard.type(path);
     await sleep(100);
     await keyboard.type(Key.Enter);
+}
+
+export async function checkIfKeynoteIsOpen() {
+    const activeWindow = await getActiveWindow();
+    const windowTitle =  await activeWindow.getTitle();
+    if (windowTitle === "Open") {
+        sleep(100);
+        return true;
+    } else {
+        sleep(100);
+        return false;
+    }
 }
