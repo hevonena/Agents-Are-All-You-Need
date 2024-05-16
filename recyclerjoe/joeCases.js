@@ -61,15 +61,6 @@ export async function switchCase(parsedAnswerForJoe) {
             generate_speech(gptResponse.description, "onyx");
             await keyboardAction.makePresentation(gptPresentation);
             break;
-        case "poetic reading":
-            await generate_speech(gptResponse.description, "onyx");
-            generate_speech(gptResponse.content, "onyx");
-            break;
-        case "code poetry":
-            keyboardAction.makeCodePoetry(gptResponse.codePoetry)
-            break;
-        case "algorithmic art":
-            break;
         case "horoscope":
             generate_speech(gptResponse.description, "onyx");
             await keyboardAction.writeNote({
@@ -79,10 +70,13 @@ export async function switchCase(parsedAnswerForJoe) {
             break;
         case "recipe":
             generate_speech(gptResponse.description, "onyx");
+            await modify_image(gptResponse.imagePrompt, gptResponse.fileName, "portrait");
+            filePath = path.join(downloadDir, gptResponse.fileName);
             await keyboardAction.writeNote({
                 title: gptResponse.title,
                 content: gptResponse.content,
             });
+            await keyboardAction.pasteRecipeImageInNotes(filePath);
             break;
         case "poem":
             // generate_speech(gptResponse.description, "onyx");

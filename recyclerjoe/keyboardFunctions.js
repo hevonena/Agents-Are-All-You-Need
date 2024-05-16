@@ -163,6 +163,37 @@ export async function makePresentation(presentation) {
     await keyboard.type(Key.Left);
 }
 
+export async function pasteRecipeImageInNotes(filePath) {
+
+    await openFinder();
+    await sleep(200);
+    await keyboard.type(Key.LeftSuper, Key.LeftShift, Key.G);
+    await clipboard.setContent(filePath);
+    while (!(fs.existsSync(filePath + ".png"))) {
+        await sleep(100);
+        console.log("waiting for file to be copied");
+    }
+    await sleep(1000)
+    await keyboard.type(Key.LeftSuper, Key.V);
+    await sleep(400);
+    await keyboard.type(Key.Enter);
+    await sleep(500);
+
+    // copy image
+    await keyboard.type(Key.LeftSuper, Key.C);
+    await sleep(700);
+
+    // back to notes
+    await keyboard.type(Key.LeftSuper, Key.Tab);
+    await sleep(700);
+
+    // click left
+    await keyboard.type(Key.Left);
+    await sleep(300);
+    // paste image
+    await keyboard.type(Key.LeftSuper, Key.V);
+}
+
 export async function goToMovie(filePath, songName) {
     await openFinder();
     await sleep(200);
@@ -228,50 +259,6 @@ export async function checkifWindowIsOpen(windowName) {
         await sleep(100);
         return false;
     }
-}
-
-export async function makeCodePoetry(codePoetry) {
-    await openApp("vscode");
-    await sleep(2000);
-    
-    //new window
-    await keyboard.type(Key.LeftSuper, Key.LeftShift, Key.N);
-    await sleep(700);
-
-    // new text file
-    await keyboard.type(Key.LeftSuper, Key.N);
-    await sleep(100);
-
-    // type code poetry
-    await keyboard.type(codePoetry);
-}
-
-// not used
-export async function makeReminder(title, points) {
-    await openApp("reminders");
-    await sleep(100);
-    while (!await checkifWindowIsOpen("Reminders")) {}
-    await sleep(300);
-    
-    //new reminder list
-    await keyboard.type(Key.LeftShift, Key.LeftSuper, Key.N);
-    await sleep(300);
-
-    //type list name
-    await keyboard.type(title);
-    await sleep(200);
-    await keyboard.type(Key.Enter);
-    await sleep(300);
-
-    // add reminders
-    for (const point of points) {
-        await keyboard.type(Key.Enter);
-        await sleep(300);
-        await keyboard.type(Key.LeftSuper, Key.N);
-        await sleep(300);
-        await keyboard.type(point);
-    }
-
 }
 
 
