@@ -9,7 +9,7 @@ const __dirname = dirname(__filename);
 
 export async function startTerminal() {
     term.eraseDisplay();
-    term.reset();
+    term.hideCursor();
 
     await term.drawImage(path.join(__dirname, "./recycler.png"), {});
 
