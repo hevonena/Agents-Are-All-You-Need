@@ -104,11 +104,12 @@ export async function makePresentation(presentation) {
     while (!await checkIfKeynoteIsOpen()) {
         // await sleep(100);
     }
+    await sleep(500);
 
     await keyboard.type(Key.LeftSuper, Key.N);
-    await sleep(100);
+    await sleep(1000);
     await keyboard.type(Key.Enter);
-    await sleep(200);
+    await sleep(400);
 
     keyboard.config.autoDelayMs = 30;
 
