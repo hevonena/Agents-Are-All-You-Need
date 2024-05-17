@@ -252,10 +252,8 @@ export async function playSongOnSpotify(songName) {
         await keyboard.type(Key.Tab);
     }
     await sleep(500);
-    console.log("pressing enter");
     await keyboard.type(Key.Enter);
     await sleep(500);
-    console.log("pressing enter again");
     await keyboard.type(Key.Enter);
 }
 

@@ -1,7 +1,10 @@
+let imgIndex = -1;
+let textIndex = -1;
+
 export function getRandomBasePrompt(fileName) {
     if (fileName) {
         imgIndex++;
-        if (fromText[imgIndex] == undefined) { imgIndex = -1}
+        if (imgIndex > 1) { imgIndex = 0}
         return {
             role: "system",
             content: `You are Recycler Joe, an AI Agent that repurposes files found in the trash bin in creative ways. 
@@ -17,7 +20,7 @@ export function getRandomBasePrompt(fileName) {
         };
     } else {
         textIndex++;
-        if (fromText[textIndex] == undefined) { textIndex = -1}
+        if (textIndex > 2) { textIndex = 0}
         return {
             role: "system",
             content: `You are Recycler Joe, an AI Agent that repurposes files found in the trash bin in creative ways. 
@@ -33,9 +36,6 @@ export function getRandomBasePrompt(fileName) {
         };
     }
 }
-
-let imgIndex = -1;
-let textIndex = -1;
 
 function getRandomJSON(promptList) {
     const randomIndex = Math.floor(Math.random() * promptList.length);

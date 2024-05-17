@@ -33,5 +33,5 @@ export async function downloadImageFromURL(url, path) {
     const arrayBuffer = await response.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
     fs.writeFileSync(path, buffer);
-    console.log("Image downloaded");
+    // console.log("Image downloaded");
 }

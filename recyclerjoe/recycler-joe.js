@@ -6,6 +6,8 @@ import * as prompt from "./prompts.js";
 import { startTerminal, logNewFileInTrash } from "./terminalStyles.js";
 import chokidar from 'chokidar';
 
+// generate_speech("Yoooo welcome everybody, I'm Recycler Joe, I was created this week to make sure nothing goes to waste... hahahahaha", "onyx");
+
 // -------- TRASH WATCHER --------
 const watcher = chokidar.watch(trashDir, { 
     persistent: true, 
