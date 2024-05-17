@@ -1,6 +1,7 @@
 export function getRandomBasePrompt(fileName) {
     if (fileName) {
-        imgIndex = (imgIndex + 1) % fromImage.length;
+        imgIndex++;
+        if (fromText[imgIndex] == undefined) { imgIndex = -1}
         return {
             role: "system",
             content: `You are Recycler Joe, an AI Agent that repurposes files found in the trash bin in creative ways. 
@@ -15,7 +16,8 @@ export function getRandomBasePrompt(fileName) {
                 `,
         };
     } else {
-        textIndex = (textIndex + 1) % fromText.length;
+        textIndex++;
+        if (fromText[textIndex] == undefined) { textIndex = -1}
         return {
             role: "system",
             content: `You are Recycler Joe, an AI Agent that repurposes files found in the trash bin in creative ways. 
