@@ -28,7 +28,7 @@ export async function imageToDesktopWallpaper(filePath) {
     await clipboard.setContent(filePath);
     while (!(fs.existsSync(filePath + ".png"))) {
         await sleep(100);
-        console.log("waiting for file to be copied");
+        // console.log("waiting for file to be copied");
     }
     await keyboard.type(Key.LeftSuper, Key.V);
     await sleep(400);
@@ -192,7 +192,7 @@ export async function pasteRecipeImageInNotes(filePath) {
     await clipboard.setContent(filePath);
     while (!(fs.existsSync(filePath + ".png"))) {
         await sleep(100);
-        console.log("waiting for file to be copied");
+        // console.log("waiting for file to be copied");
     }
     await sleep(1000)
     await keyboard.type(Key.LeftSuper, Key.V);
@@ -222,7 +222,7 @@ export async function goToMovie(filePath, songName) {
     await clipboard.setContent(filePath);
     while (!(fs.existsSync(filePath + ".png"))) {
         await sleep(100);
-        console.log("waiting for file to be copied");
+        // console.log("waiting for file to be copied");
     }
     await keyboard.type(Key.LeftSuper, Key.V);
     await sleep(400);

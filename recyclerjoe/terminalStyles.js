@@ -11,7 +11,7 @@ export async function startTerminal() {
     term.clear();
     term.hideCursor();
 
-    await term.drawImage(path.join(__dirname, "./recycle.png"), {
+    await term.drawImage(path.join(__dirname, "./recycler.png"), {
         shrink: { width: 32, height: 32 },
         y: 0,
         x: 0,
