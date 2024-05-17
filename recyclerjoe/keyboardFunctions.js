@@ -31,7 +31,7 @@ export async function imageToDesktopWallpaper(filePath) {
         // console.log("waiting for file to be copied");
     }
     await keyboard.type(Key.LeftSuper, Key.V);
-    await sleep(400);
+    await sleep(1000);
     await keyboard.type(Key.Enter);
     await sleep(500);
     await keyboard.type(Key.LeftControl, Key.LeftAlt, Key.LeftSuper, Key.T);
@@ -60,7 +60,7 @@ export async function writeNote(note) {
     await keyboard.type(Key.Enter);
     await sleep(100);
 
-    keyboard.config.autoDelayMs = 60;
+    keyboard.config.autoDelayMs = 45;
     await keyboard.type(note.content);
     await sleep(100);
     keyboard.config.autoDelayMs = 100;
@@ -225,7 +225,7 @@ export async function goToMovie(filePath, songName) {
         // console.log("waiting for file to be copied");
     }
     await keyboard.type(Key.LeftSuper, Key.V);
-    await sleep(400);
+    await sleep(1000);
     await keyboard.type(Key.Enter);
     await sleep(500);
     await keyboard.type(Key.LeftSuper, Key.O);
