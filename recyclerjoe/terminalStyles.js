@@ -11,12 +11,13 @@ export async function startTerminal() {
     term.clear();
     term.hideCursor();
 
+    let middleOfScreenX = await Math.round(term.width / 2);
+    let middleOfScreenY = await Math.round(term.height / 2);
+
     await term.drawImage(path.join(__dirname, "./recycler.png"), {
         shrink: { width: 32, height: 32 },
-        y: 0,
-        x: 0,
     });
 
     await term.spinner("asciiSpinner");
-    await term(" Looking at your 🗑️  trash bin hehe 👀 \n");
+    await term.bold.green(" Looking at your 🗑️  trash bin hehe 👀 \n");
 }
