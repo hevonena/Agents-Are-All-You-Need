@@ -20,3 +20,8 @@ export async function startTerminal() {
 
     
 }
+
+export function logNewFileInTrash (filePath) {
+    const fileName = path.basename(filePath);
+    term.bold.yellow(`⚠️  New file in 🗑️  : ${fileName}\n`);
+}

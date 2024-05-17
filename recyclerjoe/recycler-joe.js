@@ -3,7 +3,7 @@ import { readFiles, trashDir } from "./fileReading.js";
 import { greetings } from "./greetings.js";
 import { switchCase, parseAnswerForJoe } from "./joeCases.js";
 import * as prompt from "./prompts.js";
-import { startTerminal } from "./terminalStyles.js";
+import { startTerminal, logNewFileInTrash } from "./terminalStyles.js";
 import chokidar from 'chokidar';
 
 // -------- TRASH WATCHER --------
@@ -15,8 +15,8 @@ const watcher = chokidar.watch(trashDir, {
 
 // Event listeners
 watcher.on('add', (filePath) => {
-        console.log(`New file added to trash: ${filePath}`);
-        myNodeFunction(filePath);
+        logNewFileInTrash(filePath);
+        main_loop(filePath);
     }
 );
 
@@ -24,7 +24,7 @@ startTerminal();
 
 generate_speech("Yoooo broooo, I'm Recycler Joe, I'm here to help you recycle your trash. Just drag and drop your files into the trash and I'll take care of the rest. hahahahaha", "onyx");
 
-async function myNodeFunction(filePath) {
+async function main_loop(filePath) {
 
     // -------- FILE READING --------
     let { fileContent, fileName } = await readFiles(filePath);
