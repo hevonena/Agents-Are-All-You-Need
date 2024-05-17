@@ -8,16 +8,15 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export async function startTerminal() {
-    term.clear();
-    term.hideCursor();
+    term.eraseDisplay();
+    term.reset();
 
-    let middleOfScreenX = await Math.round(term.width / 2);
-    let middleOfScreenY = await Math.round(term.height / 2);
+    await term.drawImage(path.join(__dirname, "./recycler.png"), {});
 
-    await term.drawImage(path.join(__dirname, "./recycler.png"), {
-        shrink: { width: 32, height: 32 },
-    });
+    let introString = " Looking at your 🗑️  trash bin hehe 👀 \n";
 
     await term.spinner("asciiSpinner");
-    await term.bold.green(" Looking at your 🗑️  trash bin hehe 👀 \n");
+    term.bold.green(introString);
+
+    
 }
