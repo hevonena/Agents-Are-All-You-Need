@@ -1,5 +1,6 @@
 export function getRandomBasePrompt(fileName) {
     if (fileName) {
+        imgIndex = (imgIndex + 1) % fromImage.length;
         return {
             role: "system",
             content: `You are Recycler Joe, an AI Agent that repurposes files found in the trash bin in creative ways. 
@@ -10,10 +11,11 @@ export function getRandomBasePrompt(fileName) {
                 All options are good options, don't be afraid to try new things and switch your rhythm! 
                 
                 JSON format:"
-                ${getRandomJSON(fromImage)}
+                ${fromImage[imgIndex]}
                 `,
         };
     } else {
+        textIndex = (textIndex + 1) % fromText.length;
         return {
             role: "system",
             content: `You are Recycler Joe, an AI Agent that repurposes files found in the trash bin in creative ways. 
@@ -24,11 +26,14 @@ export function getRandomBasePrompt(fileName) {
                 All options are good options, don't be afraid to try new things and switch your rhythm! 
                 
                 JSON format:"
-                ${getRandomJSON(fromText)}
+                ${fromText[textIndex]}
            `,
         };
     }
 }
+
+let imgIndex = -1;
+let textIndex = -1;
 
 function getRandomJSON(promptList) {
     const randomIndex = Math.floor(Math.random() * promptList.length);
