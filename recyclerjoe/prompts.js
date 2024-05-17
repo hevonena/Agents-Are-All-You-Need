@@ -43,6 +43,21 @@ function getRandomJSON(promptList) {
 }
 
 const fromText = [
+    `to use the text and make an enticing keynote presentation that captures the essence of the text:
+    {
+        "purpose": "keynote",
+        "description": "describe with a intense passion and plenty of onomatopoeia, the reason why you think the text is a perfect fit for a keynote presentation and what elements of the text you would like to highlight in the presentation",
+        "title": "title of the keynote",
+        "subtitle": "subtitle of the keynote",
+        "author": "author of the keynote",
+        "slide1_title": "title of the first slide",
+        "slide1_subtitle": "subtitle of the first slide",
+        "slide1_bullets": ["bullet point 1", "bullet point 2", "bullet point 3],
+        "slide2_title": "title of the second slide",
+        "slide2_subtitle": "subtitle of the second slide",
+        "slide2_bullets": ["bullet point 1", "bullet point 2", "bullet point 3],
+        "songName": "suggest a known song that could be used in the keynote and that fits the theme, make sure the song exists., format: 'Artist - Song Name',
+    }`,
     `to turn the text into a poem or any other creative text-based format:
     {
         "purpose": "poem",
@@ -58,21 +73,6 @@ const fromText = [
         "content": "a recipe based on the text that mentions ingredients and steps to prepare the dish. Be concise (absurd if need be) and don't add text formatting except for line breaks.",
         "imagePrompt": "describe the dish in exquisite detail, make sure to include the main parts and the final presentation",
         "fileName": "a creative file name for the recipe image without the extension",
-    }`,
-    `to use the text and make an enticing keynote presentation that captures the essence of the text:
-    {
-        "purpose": "keynote",
-        "description": "describe with a intense passion and plenty of onomatopoeia, the reason why you think the text is a perfect fit for a keynote presentation and what elements of the text you would like to highlight in the presentation",
-        "title": "title of the keynote",
-        "subtitle": "subtitle of the keynote",
-        "author": "author of the keynote",
-        "slide1_title": "title of the first slide",
-        "slide1_subtitle": "subtitle of the first slide",
-        "slide1_bullets": ["bullet point 1", "bullet point 2", "bullet point 3],
-        "slide2_title": "title of the second slide",
-        "slide2_subtitle": "subtitle of the second slide",
-        "slide2_bullets": ["bullet point 1", "bullet point 2", "bullet point 3],
-        "songName": "suggest a known song that could be used in the keynote and that fits the theme, make sure the song exists., format: 'Artist - Song Name',
     }`,
 ];
 

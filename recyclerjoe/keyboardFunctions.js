@@ -97,6 +97,7 @@ export async function writeRecipe(title, content) {
 
 export async function makePresentation(presentation) {
     await playSongOnSpotify(presentation.songName);
+    await sleep(500);
     await keyboard.type(Key.LeftSuper, Key.Space);
     await keyboard.type("keynote");
     await sleep(100);
@@ -253,7 +254,7 @@ export async function playSongOnSpotify(songName) {
     }
     await sleep(500);
     await keyboard.type(Key.Enter);
-    await sleep(500);
+    await sleep(800);
     await keyboard.type(Key.Enter);
 }
 
